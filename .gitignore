@@ -19,3 +19,11 @@ build/
 # Renders produced while testing
 *.png
 !docs/**/*.png
+
+# KiCad per-user state, lock files, backups and caches
+*.kicad_prl
+*.lck
+*-backups/
+*.kicad_pcb-bak
+_autosave-*
+fp-info-cache
