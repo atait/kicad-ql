@@ -10,7 +10,32 @@ public enum PCBRenderer {
     /// Off-white with a hint of yellow on the front; the back is a little more yellow.
     static let frontSilk = hexColor("#f4efd6"), backSilk = hexColor("#ecdc9c")
 
-    public static func draw(_ board: PCBBoard, in ctx: CGContext, rect: CGRect) {
+    /// Every focused view dims the other layers to this grey and opacity, so they stay as context.
+    static let dimColor = hexColor("#808080"), dimAlpha: CGFloat = 0.25
+    /// Dark edge drawn around focused silkscreen, so off-white still reads over a light background.
+    static let silkHalo = hexColor("#4a4430")
+
+    /// The layers a viewer can focus, front to back: F.SilkS, F.Cu, In1.Cu…, B.Cu, B.SilkS.
+    /// Silkscreen layers are listed only if the board has something on them.
+    public static func layers(of board: PCBBoard) -> [String] {
+        var out = board.copperLayers.sorted { stackIndex($0) < stackIndex($1) }
+        if board.shapes["F.SilkS"] != nil { out.insert("F.SilkS", at: 0) }
+        if board.shapes["B.SilkS"] != nil { out.append("B.SilkS") }
+        return out
+    }
+
+    /// The colour a layer is drawn in, for legends.
+    public static func color(of layer: String) -> CGColor {
+        switch layer {
+        case "F.SilkS": frontSilk
+        case "B.SilkS": backSilk
+        default: hexColor(copperColors[layer] ?? "#7f8c8d")
+        }
+    }
+
+    /// With `focus` nil this is the overview. With a layer from `layers(of:)`, that layer is drawn
+    /// opaque on top and every other layer is drawn grey and faint underneath it.
+    public static func draw(_ board: PCBBoard, in ctx: CGContext, rect: CGRect, focus: String? = nil) {
         ctx.saveGState()
         defer { ctx.restoreGState() }
         ctx.setFillColor(background)
@@ -26,36 +51,27 @@ public enum PCBRenderer {
         ctx.setLineCap(.round)
         ctx.setLineJoin(.round)
 
-        // back silkscreen sits under all the copper, showing through where the copper is translucent
-        silk(board.shapes["B.SilkS"] ?? [], backSilk, alpha: 0.9, ctx)
-
-        // Copper, back to front. Each layer is drawn opaque into its own transparency group and composited
-        // at one alpha, so overlapping pads and tracks on a layer don't darken each other.
-        for layer in board.copperLayers.sorted(by: { stackIndex($0) > stackIndex($1) }) {
-            let c = hexColor(copperColors[layer] ?? "#7f8c8d")
-            ctx.setAlpha(layer == "F.Cu" ? 0.85 : 0.7)
-            ctx.beginTransparencyLayer(auxiliaryInfo: nil)
-            ctx.setFillColor(c.copy(alpha: 0.45) ?? c)
-            paint(board.zoneFills[layer] ?? [], ctx)
-            ctx.setFillColor(c)
-            ctx.setStrokeColor(c)
-            paint(board.shapes[layer] ?? [], ctx)
-            ctx.endTransparencyLayer()
+        let stack = layers(of: board).reversed()                  // back to front
+        if let focus, stack.contains(focus) {
+            for layer in stack where layer != focus {
+                drawLayer(layer, board, dimColor, alpha: dimAlpha, ctx)
+            }
+            let copper = focus.hasSuffix(".Cu")
+            if !copper { drawVias(board, alpha: dimAlpha, ctx) }  // vias are copper: faint under focused silk
+            drawLayer(focus, board, color(of: focus), alpha: 1, halo: !copper, ctx)
+            if copper { drawVias(board, alpha: 1, ctx) }
+            punchHoles(board, ctx)
+        } else {
+            // Overview: back silkscreen under the copper, so it shows through where the copper is translucent;
+            // copper back to front; vias and holes; front silkscreen over everything but the outline.
+            for layer in stack where layer != "F.SilkS" {
+                let alpha: CGFloat = layer == "B.SilkS" ? 0.9 : layer == "F.Cu" ? 0.85 : 0.7
+                drawLayer(layer, board, color(of: layer), alpha: alpha, ctx)
+            }
+            drawVias(board, alpha: 1, ctx)
+            punchHoles(board, ctx)
+            drawLayer("F.SilkS", board, frontSilk, alpha: 0.8, ctx)
         }
-        ctx.setAlpha(1)
-
-        // vias over all copper, then every hole punched through to the background
-        ctx.setFillColor(hexColor("#555555"))
-        for v in board.vias { ctx.fillEllipse(in: circleRect(v.center, v.size / 2)) }
-        ctx.setFillColor(background)
-        for v in board.vias { ctx.fillEllipse(in: circleRect(v.center, v.drill / 2)) }
-        for h in board.holes {
-            ctx.addPath(h)
-            ctx.fillPath()
-        }
-
-        // front silkscreen over everything but the outline
-        silk(board.shapes["F.SilkS"] ?? [], frontSilk, alpha: 0.8, ctx)
 
         // outline at a constant ~1.2 pt, whatever the zoom
         ctx.setStrokeColor(hexColor("#000000"))
@@ -66,11 +82,22 @@ public enum PCBRenderer {
         }
     }
 
-    /// One silkscreen layer as a single translucent group, so overlapping strokes and glyphs don't stack.
-    private static func silk(_ shapes: [Shape], _ color: CGColor, alpha: CGFloat, _ ctx: CGContext) {
-        guard !shapes.isEmpty else { return }
+    /// One layer as a single translucent group, so overlapping pads, tracks, strokes and glyphs don't
+    /// darken each other. Copper zone fills are drawn lighter than tracks and pads.
+    private static func drawLayer(_ layer: String, _ board: PCBBoard, _ color: CGColor, alpha: CGFloat,
+                                  halo: Bool = false, _ ctx: CGContext) {
+        let shapes = board.shapes[layer] ?? [], zones = board.zoneFills[layer] ?? []
+        guard !shapes.isEmpty || !zones.isEmpty else { return }
         ctx.setAlpha(alpha)
         ctx.beginTransparencyLayer(auxiliaryInfo: nil)
+        if halo {
+            // the same shapes, stroked wider in a dark colour, then the real colour on top
+            ctx.setFillColor(silkHalo)
+            ctx.setStrokeColor(silkHalo)
+            paint(shapes, ctx, widen: 0.16)
+        }
+        ctx.setFillColor(color.copy(alpha: 0.45) ?? color)
+        paint(zones, ctx)
         ctx.setFillColor(color)
         ctx.setStrokeColor(color)
         paint(shapes, ctx)
@@ -78,14 +105,33 @@ public enum PCBRenderer {
         ctx.setAlpha(1)
     }
 
-    private static func paint(_ shapes: [Shape], _ ctx: CGContext) {
+    /// Every via drill and pad hole, filled with the background colour.
+    private static func punchHoles(_ board: PCBBoard, _ ctx: CGContext) {
+        ctx.setFillColor(background)
+        for v in board.vias { ctx.fillEllipse(in: circleRect(v.center, v.drill / 2)) }
+        for h in board.holes {
+            ctx.addPath(h)
+            ctx.fillPath()
+        }
+    }
+
+    private static func drawVias(_ board: PCBBoard, alpha: CGFloat, _ ctx: CGContext) {
+        ctx.setFillColor(hexColor("#555555", alpha: alpha))
+        for v in board.vias { ctx.fillEllipse(in: circleRect(v.center, v.size / 2)) }
+    }
+
+    /// `widen` > 0 strokes every shape that much wider (fills get a stroke of that width), for halos.
+    private static func paint(_ shapes: [Shape], _ ctx: CGContext, widen: CGFloat = 0) {
         for sh in shapes {
             ctx.addPath(sh.path)
             switch sh.style {
+            case .fill where widen > 0:
+                ctx.setLineWidth(widen)
+                ctx.drawPath(using: .fillStroke)
             case .fill:
                 ctx.fillPath()
             case .stroke(let w):
-                ctx.setLineWidth(w)
+                ctx.setLineWidth(w + widen)
                 ctx.strokePath()
             }
         }

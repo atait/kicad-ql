@@ -14,9 +14,15 @@ fit-to-window overview, not a faithful render: there is no zoom and there are no
   - `Text.swift`: gr_text, fp_text and footprint `property` text as glyph outlines (system font
     standing in for KiCad's stroke font; cap height = text size). Hidden text is skipped, footprint
     text is kept upright, `${REFERENCE}`/`${VALUE}` are substituted, and `mirror` is honoured.
-  - `PCBRenderer.swift`: draws a `PCBBoard` fitted into a rect of a y-up `CGContext`. Draw order:
-    B.SilkS (yellowish) → copper back to front (translucent) → vias/holes → F.SilkS (off-white,
-    translucent) → Edge.Cuts.
+  - `PCBRenderer.swift`: draws a `PCBBoard` fitted into a rect of a y-up `CGContext`, either as the
+    overview or with one layer in focus.
+    - Overview order: B.SilkS (yellowish) → copper back to front (translucent) → vias → holes →
+      F.SilkS (off-white, translucent) → Edge.Cuts.
+    - `focus: layer`: every other layer is drawn in flat grey at 25% opacity, then the focused layer is
+      drawn opaque on top. Silkscreen gets a dark edge, so it reads over the light background. Vias are
+      treated as copper. Holes and Edge.Cuts always go last.
+    - `layers(of:)` lists the layers that can be focused, front to back. `color(of:)` gives each one's
+      colour, for the legend.
   - `Sources/kiql-render`: CLI that renders a board to PNG for checking renderer changes.
 - `KiCadQL.xcodeproj`: host app `KiCadQL/` embeds `KiCadQLPreview/` (data-based `QLPreviewProvider`),
   which links the local `KiCadPCBKit` package. There is deliberately no thumbnail extension: Finder
@@ -32,6 +38,7 @@ fit-to-window overview, not a faithful render: there is no zoom and there are no
 swift build --package-path KiCadPCBKit
 swift test  --package-path KiCadPCBKit
 swift run -c release --package-path KiCadPCBKit kiql-render examples/LoomRide-v1.kicad_pcb out.png 1200
+swift run -c release --package-path KiCadPCBKit kiql-render examples/LoomRide-v1.kicad_pcb out.png 1200 --focus B.SilkS
 # build the app without a signing team (ad-hoc), to check that it compiles:
 xcodebuild -project KiCadQL.xcodeproj -scheme KiCadQL -derivedDataPath /tmp/kiql-dd \
     CODE_SIGN_IDENTITY=- DEVELOPMENT_TEAM= CODE_SIGN_STYLE=Manual build
@@ -40,7 +47,8 @@ qlmanage -p examples/LoomRide-v1.kicad_pcb       # preview from the terminal
 pluginkit -mv -p com.apple.quicklook.preview | grep -i kicad   # is the extension registered?
 ```
 
-After a renderer change, render both examples with `kiql-render` and look at the PNGs.
+After a renderer change, render both examples with `kiql-render`, both the overview and each `--focus`
+layer, and look at the PNGs.
 
 ## Conventions and gotchas
 

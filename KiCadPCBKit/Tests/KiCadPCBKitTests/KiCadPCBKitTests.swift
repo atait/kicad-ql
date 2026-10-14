@@ -80,3 +80,31 @@ func parsesAndDrawsExample(_ name: String) throws {
     #expect(board.shapes["B.SilkS"]?.count == 1)                      // ${REFERENCE} → R1
     #expect(board.shapes["F.Fab"] == nil)
 }
+
+@Test func focusableLayersAreFrontToBack() throws {
+    let board = try PCBBoard(data: Data("""
+        (kicad_pcb (layers (0 "F.Cu" signal) (4 "In1.Cu" signal) (2 "B.Cu" signal))
+          (gr_line (start 0 0) (end 1 1) (layer "B.SilkS") (stroke (width 0.1))))
+        """.utf8))
+    #expect(PCBRenderer.layers(of: board) == ["F.Cu", "In1.Cu", "B.Cu", "B.SilkS"])   // no F.SilkS: it's empty
+}
+
+/// An F.Cu track and a B.Cu track crossing in the middle of the board: whichever layer is focused must
+/// be the one, opaque and in its own colour, at the crossing.
+@Test(arguments: ["F.Cu", "B.Cu"])
+func focusedLayerIsOpaqueOnTop(_ layer: String) throws {
+    let board = try PCBBoard(data: Data("""
+        (kicad_pcb
+          (gr_rect (start 0 0) (end 10 10) (layer "Edge.Cuts") (stroke (width 0.1)))
+          (segment (start 0 5) (end 10 5) (width 2) (layer "F.Cu"))
+          (segment (start 5 0) (end 5 10) (width 2) (layer "B.Cu")))
+        """.utf8))
+    let ctx = try #require(CGContext(data: nil, width: 120, height: 120, bitsPerComponent: 8, bytesPerRow: 120 * 4,
+                                     space: CGColorSpace(name: CGColorSpace.sRGB)!,
+                                     bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue))
+    PCBRenderer.draw(board, in: ctx, rect: CGRect(x: 0, y: 0, width: 120, height: 120), focus: layer)
+    let px = ctx.data!.assumingMemoryBound(to: UInt8.self) + (60 * 120 + 60) * 4
+    let want = try #require(PCBRenderer.color(of: layer).converted(to: CGColorSpace(name: CGColorSpace.sRGB)!,
+                                                                    intent: .defaultIntent, options: nil)?.components)
+    for i in 0..<3 { #expect(abs(Double(px[i]) - Double(want[i]) * 255) <= 2) }
+}
