@@ -26,7 +26,9 @@ fit-to-window overview, not a faithful render: there is no zoom, no layer toggle
 swift build --package-path KiCadPCBKit
 swift test  --package-path KiCadPCBKit
 swift run -c release --package-path KiCadPCBKit kiql-render examples/LoomRide-v1.kicad_pcb out.png 1200
-xcodebuild -project KiCadQL.xcodeproj -scheme KiCadQL -configuration Debug build   # needs signing set up
+# build the app without a signing team (ad-hoc), to check that it compiles:
+xcodebuild -project KiCadQL.xcodeproj -scheme KiCadQL -derivedDataPath /tmp/kiql-dd \
+    CODE_SIGN_IDENTITY=- DEVELOPMENT_TEAM= CODE_SIGN_STYLE=Manual build
 qlmanage -r && qlmanage -r cache        # reset QuickLook after installing a new build
 qlmanage -p examples/LoomRide-v1.kicad_pcb       # preview from the terminal
 qlmanage -t -s 512 -o /tmp examples/LoomRide-v1.kicad_pcb   # thumbnail to a file
@@ -39,6 +41,8 @@ After a renderer change, render both examples with `kiql-render` and look at the
 
 - The user is new to Swift and Xcode. When a change needs an Xcode GUI step, explain it explicitly,
   and keep `docs/XCODE.md` up to date.
+- `project.pbxproj` was written by hand (objectVersion 77). Bundle IDs derive from the project-level
+  `BUNDLE_ID_PREFIX` build setting.
 - Prefer editing `project.pbxproj` only for small, well-understood changes. For anything else, describe
   the change for the user to make in Xcode.
 - macOS has no system UTI for `.kicad_pcb`, and KiCad.app does not declare one. The host app's

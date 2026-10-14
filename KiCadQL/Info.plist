@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<!-- macOS has no type for .kicad_pcb, and KiCad.app doesn't declare one, so declare it here.
+	     The extensions refer to this identifier in their QLSupportedContentTypes. -->
+	<key>UTImportedTypeDeclarations</key>
+	<array>
+		<dict>
+			<key>UTTypeIdentifier</key>
+			<string>org.kicad.pcb</string>
+			<key>UTTypeDescription</key>
+			<string>KiCad PCB</string>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.data</string>
+				<string>public.content</string>
+			</array>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>kicad_pcb</string>
+				</array>
+			</dict>
+		</dict>
+	</array>
+</dict>
+</plist>

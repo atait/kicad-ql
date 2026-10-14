@@ -1,0 +1,574 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+/* Begin PBXBuildFile section */
+		4B5C0D000000000000000030 /* KiCadQLPreview.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 4B5C0D000000000000000005 /* KiCadQLPreview.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		4B5C0D000000000000000032 /* KiCadPCBKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4B5C0D000000000000000034 /* KiCadPCBKit */; };
+		4B5C0D000000000000000031 /* KiCadQLThumbnail.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 4B5C0D000000000000000006 /* KiCadQLThumbnail.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		4B5C0D000000000000000033 /* KiCadPCBKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4B5C0D000000000000000035 /* KiCadPCBKit */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4B5C0D000000000000000040 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4B5C0D000000000000000001 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4B5C0D000000000000000011;
+			remoteInfo = KiCadQLPreview;
+		};
+		4B5C0D000000000000000042 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4B5C0D000000000000000001 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4B5C0D000000000000000012;
+			remoteInfo = KiCadQLThumbnail;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		4B5C0D000000000000000023 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				4B5C0D000000000000000030 /* KiCadQLPreview.appex in Embed Foundation Extensions */,
+				4B5C0D000000000000000031 /* KiCadQLThumbnail.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		4B5C0D000000000000000004 /* KiCadQL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KiCadQL.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4B5C0D000000000000000005 /* KiCadQLPreview.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = KiCadQLPreview.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		4B5C0D000000000000000006 /* KiCadQLThumbnail.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = KiCadQLThumbnail.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		4B5C0D00000000000000000A /* Exceptions for "KiCadQL" folder in "KiCadQL" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 4B5C0D000000000000000010 /* KiCadQL */;
+		};
+		4B5C0D00000000000000000B /* Exceptions for "KiCadQLPreview" folder in "KiCadQLPreview" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 4B5C0D000000000000000011 /* KiCadQLPreview */;
+		};
+		4B5C0D00000000000000000C /* Exceptions for "KiCadQLThumbnail" folder in "KiCadQLThumbnail" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 4B5C0D000000000000000012 /* KiCadQLThumbnail */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		4B5C0D000000000000000007 /* KiCadQL */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				4B5C0D00000000000000000A /* Exceptions for "KiCadQL" folder in "KiCadQL" target */,
+			);
+			path = KiCadQL;
+			sourceTree = "<group>";
+		};
+		4B5C0D000000000000000008 /* KiCadQLPreview */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				4B5C0D00000000000000000B /* Exceptions for "KiCadQLPreview" folder in "KiCadQLPreview" target */,
+			);
+			path = KiCadQLPreview;
+			sourceTree = "<group>";
+		};
+		4B5C0D000000000000000009 /* KiCadQLThumbnail */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				4B5C0D00000000000000000C /* Exceptions for "KiCadQLThumbnail" folder in "KiCadQLThumbnail" target */,
+			);
+			path = KiCadQLThumbnail;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4B5C0D000000000000000021 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = ();
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4B5C0D000000000000000025 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4B5C0D000000000000000032 /* KiCadPCBKit in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4B5C0D000000000000000028 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4B5C0D000000000000000033 /* KiCadPCBKit in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4B5C0D000000000000000002 = {
+			isa = PBXGroup;
+			children = (
+				4B5C0D000000000000000007 /* KiCadQL */,
+				4B5C0D000000000000000008 /* KiCadQLPreview */,
+				4B5C0D000000000000000009 /* KiCadQLThumbnail */,
+				4B5C0D000000000000000003 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		4B5C0D000000000000000003 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4B5C0D000000000000000004 /* KiCadQL.app */,
+				4B5C0D000000000000000005 /* KiCadQLPreview.appex */,
+				4B5C0D000000000000000006 /* KiCadQLThumbnail.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4B5C0D000000000000000010 /* KiCadQL */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4B5C0D000000000000000053 /* Build configuration list for PBXNativeTarget "KiCadQL" */;
+			buildPhases = (
+				4B5C0D000000000000000020 /* Sources */,
+				4B5C0D000000000000000021 /* Frameworks */,
+				4B5C0D000000000000000022 /* Resources */,
+				4B5C0D000000000000000023 /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4B5C0D000000000000000041 /* PBXTargetDependency */,
+				4B5C0D000000000000000043 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				4B5C0D000000000000000007 /* KiCadQL */,
+			);
+			name = KiCadQL;
+			productName = KiCadQL;
+			productReference = 4B5C0D000000000000000004 /* KiCadQL.app */;
+			productType = "com.apple.product-type.application";
+		};
+		4B5C0D000000000000000011 /* KiCadQLPreview */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4B5C0D000000000000000056 /* Build configuration list for PBXNativeTarget "KiCadQLPreview" */;
+			buildPhases = (
+				4B5C0D000000000000000024 /* Sources */,
+				4B5C0D000000000000000025 /* Frameworks */,
+				4B5C0D000000000000000026 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				4B5C0D000000000000000008 /* KiCadQLPreview */,
+			);
+			name = KiCadQLPreview;
+			packageProductDependencies = (
+				4B5C0D000000000000000034 /* KiCadPCBKit */,
+			);
+			productName = KiCadQLPreview;
+			productReference = 4B5C0D000000000000000005 /* KiCadQLPreview.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		4B5C0D000000000000000012 /* KiCadQLThumbnail */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4B5C0D000000000000000059 /* Build configuration list for PBXNativeTarget "KiCadQLThumbnail" */;
+			buildPhases = (
+				4B5C0D000000000000000027 /* Sources */,
+				4B5C0D000000000000000028 /* Frameworks */,
+				4B5C0D000000000000000029 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				4B5C0D000000000000000009 /* KiCadQLThumbnail */,
+			);
+			name = KiCadQLThumbnail;
+			packageProductDependencies = (
+				4B5C0D000000000000000035 /* KiCadPCBKit */,
+			);
+			productName = KiCadQLThumbnail;
+			productReference = 4B5C0D000000000000000006 /* KiCadQLThumbnail.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4B5C0D000000000000000001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 2700;
+				LastUpgradeCheck = 2700;
+				TargetAttributes = {
+					4B5C0D000000000000000010 = {
+						CreatedOnToolsVersion = 27.0;
+					};
+					4B5C0D000000000000000011 = {
+						CreatedOnToolsVersion = 27.0;
+					};
+					4B5C0D000000000000000012 = {
+						CreatedOnToolsVersion = 27.0;
+					};
+				};
+			};
+			buildConfigurationList = 4B5C0D000000000000000050 /* Build configuration list for PBXProject "KiCadQL" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 4B5C0D000000000000000002;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				4B5C0D000000000000000036 /* XCLocalSwiftPackageReference "KiCadPCBKit" */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 4B5C0D000000000000000003 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4B5C0D000000000000000010 /* KiCadQL */,
+				4B5C0D000000000000000011 /* KiCadQLPreview */,
+				4B5C0D000000000000000012 /* KiCadQLThumbnail */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4B5C0D000000000000000022 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4B5C0D000000000000000026 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4B5C0D000000000000000029 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4B5C0D000000000000000020 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4B5C0D000000000000000024 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4B5C0D000000000000000027 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4B5C0D000000000000000041 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4B5C0D000000000000000011 /* KiCadQLPreview */;
+			targetProxy = 4B5C0D000000000000000040 /* PBXContainerItemProxy */;
+		};
+		4B5C0D000000000000000043 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4B5C0D000000000000000012 /* KiCadQLThumbnail */;
+			targetProxy = 4B5C0D000000000000000042 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		4B5C0D000000000000000051 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_ID_PREFIX = io.github.atait;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 6.0;
+			};
+			name = Debug;
+		};
+		4B5C0D000000000000000052 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_ID_PREFIX = io.github.atait;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_VERSION = 6.0;
+			};
+			name = Release;
+		};
+		4B5C0D000000000000000054 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = KiCadQL/KiCadQL.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = KiCadQL/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "KiCad QuickLook";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				MARKETING_VERSION = 0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID_PREFIX).KiCadQL";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+			};
+			name = Debug;
+		};
+		4B5C0D000000000000000055 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = KiCadQL/KiCadQL.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = KiCadQL/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "KiCad QuickLook";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				MARKETING_VERSION = 0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID_PREFIX).KiCadQL";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+			};
+			name = Release;
+		};
+		4B5C0D000000000000000057 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = KiCadQLPreview/KiCadQLPreview.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = KiCadQLPreview/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "KiCad PCB Preview";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				MARKETING_VERSION = 0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID_PREFIX).KiCadQL.Preview";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		4B5C0D000000000000000058 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = KiCadQLPreview/KiCadQLPreview.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = KiCadQLPreview/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "KiCad PCB Preview";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				MARKETING_VERSION = 0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID_PREFIX).KiCadQL.Preview";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		4B5C0D00000000000000005A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = KiCadQLThumbnail/KiCadQLThumbnail.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = KiCadQLThumbnail/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "KiCad PCB Thumbnail";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				MARKETING_VERSION = 0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID_PREFIX).KiCadQL.Thumbnail";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		4B5C0D00000000000000005B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = KiCadQLThumbnail/KiCadQLThumbnail.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = KiCadQLThumbnail/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "KiCad PCB Thumbnail";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				MARKETING_VERSION = 0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(BUNDLE_ID_PREFIX).KiCadQL.Thumbnail";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4B5C0D000000000000000050 /* Build configuration list for PBXProject "KiCadQL" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4B5C0D000000000000000051 /* Debug */,
+				4B5C0D000000000000000052 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4B5C0D000000000000000053 /* Build configuration list for PBXNativeTarget "KiCadQL" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4B5C0D000000000000000054 /* Debug */,
+				4B5C0D000000000000000055 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4B5C0D000000000000000056 /* Build configuration list for PBXNativeTarget "KiCadQLPreview" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4B5C0D000000000000000057 /* Debug */,
+				4B5C0D000000000000000058 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4B5C0D000000000000000059 /* Build configuration list for PBXNativeTarget "KiCadQLThumbnail" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4B5C0D00000000000000005A /* Debug */,
+				4B5C0D00000000000000005B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		4B5C0D000000000000000036 /* XCLocalSwiftPackageReference "KiCadPCBKit" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = KiCadPCBKit;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		4B5C0D000000000000000034 /* KiCadPCBKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = KiCadPCBKit;
+		};
+		4B5C0D000000000000000035 /* KiCadPCBKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = KiCadPCBKit;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 4B5C0D000000000000000001 /* Project object */;
+}
