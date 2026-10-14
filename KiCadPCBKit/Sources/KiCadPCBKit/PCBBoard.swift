@@ -11,7 +11,7 @@ struct Shape {
 public enum PCBError: Error { case notABoard }
 
 /// What an overview needs from a .kicad_pcb: copper (tracks, pads, copper graphics, zone fills as last
-/// filled), vias and holes, front silkscreen graphics, and the board outline. Text is skipped.
+/// filled), vias and holes, front and back silkscreen (graphics and visible text), and the board outline.
 public final class PCBBoard: @unchecked Sendable {        // never mutated after init
     public private(set) var copperLayers: [String] = []
     private(set) var shapes: [String: [Shape]] = [:]
@@ -21,7 +21,7 @@ public final class PCBBoard: @unchecked Sendable {        // never mutated after
     public private(set) var bounds: CGRect = .zero
 
     /// Non-copper layers that are kept.
-    static let otherLayers: Set<String> = ["F.SilkS", "Edge.Cuts"]
+    static let otherLayers: Set<String> = ["F.SilkS", "B.SilkS", "Edge.Cuts"]
 
     public convenience init(url: URL) throws {
         try self.init(data: Data(contentsOf: url, options: .mappedIfSafe))
@@ -43,6 +43,10 @@ public final class PCBBoard: @unchecked Sendable {        // never mutated after
             case "via": via(e)
             case "zone": zone(e)
             case "footprint", "module": footprint(e)
+            case "gr_text":
+                if let layer = e.first("layer")?.string(1), keeps(layer), !isHidden(e) {
+                    add(textShapes(e, e.string(1) ?? "", .identity, keepUpright: false), on: layer)
+                }
             default:
                 if name.hasPrefix("gr_"), let layer = e.first("layer")?.string(1) {
                     add(graphicShapes(e, .identity), on: layer)
@@ -61,8 +65,10 @@ public final class PCBBoard: @unchecked Sendable {        // never mutated after
 
     // MARK: - items
 
+    private func keeps(_ layer: String) -> Bool { layer.hasSuffix(".Cu") || Self.otherLayers.contains(layer) }
+
     private func add(_ s: [Shape], on layer: String) {
-        guard !s.isEmpty, layer.hasSuffix(".Cu") || Self.otherLayers.contains(layer) else { return }
+        guard !s.isEmpty, keeps(layer) else { return }
         shapes[layer, default: []] += s
     }
 
@@ -97,10 +103,30 @@ public final class PCBBoard: @unchecked Sendable {        // never mutated after
             guard let n = item.name else { continue }
             if n == "pad" {
                 pad(item, footprint: t)
+            } else if n == "fp_text" || n == "property" {
+                footprintText(item, of: e, t)
             } else if n.hasPrefix("fp_"), let layer = item.first("layer")?.string(1) {
                 add(graphicShapes(item, t), on: layer)
             }
         }
+    }
+
+    /// KiCad 8+: (property "Reference" "R1" (at …) (layer …) (hide yes) …);
+    /// KiCad 5–7: (fp_text reference|value|user "R1" (at …) (layer …) hide …).
+    private func footprintText(_ e: SExpr, of fp: SExpr, _ t: CGAffineTransform) {
+        guard let layer = e.first("layer")?.string(1), keeps(layer), !isHidden(e), var text = e.string(2) else { return }
+        if text.contains("${") {
+            for (key, field) in [("${REFERENCE}", "reference"), ("${VALUE}", "value")] {
+                text = text.replacingOccurrences(of: key, with: fieldValue(fp, field) ?? "")
+            }
+        }
+        add(textShapes(e, text, t, keepUpright: true), on: layer)
+    }
+
+    private func fieldValue(_ fp: SExpr, _ field: String) -> String? {
+        fp.items.first {
+            ($0.name == "property" && $0.string(1)?.lowercased() == field) || ($0.name == "fp_text" && $0.string(1) == field)
+        }?.string(2)
     }
 
     /// (pad "1" smd roundrect (at x y [angle]) (size w h) (layers …) (roundrect_rratio r) (drill …) …)

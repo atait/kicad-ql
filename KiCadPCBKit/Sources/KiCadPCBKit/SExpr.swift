@@ -33,7 +33,7 @@ enum SExprError: Error { case unbalanced, empty }
 
 enum SExprParser {
     private static let LP: UInt8 = 40, RP: UInt8 = 41, QUOTE: UInt8 = 34, BACKSLASH: UInt8 = 92
-    private static let SP: UInt8 = 32, TAB: UInt8 = 9, LF: UInt8 = 10, CR: UInt8 = 13
+    private static let SP: UInt8 = 32, TAB: UInt8 = 9, LF: UInt8 = 10, CR: UInt8 = 13, N: UInt8 = 110
 
     /// Parses the first complete top-level list in `data`.
     static func parse(_ data: Data) throws -> SExpr {
@@ -64,7 +64,12 @@ enum SExprParser {
                     i += 1
                     var buf: [UInt8] = []
                     while i < n, b[i] != QUOTE {
-                        if b[i] == BACKSLASH, i + 1 < n { i += 1 }   // keep the escaped character
+                        if b[i] == BACKSLASH, i + 1 < n {            // \n is a newline; \" \\ etc. keep the char
+                            i += 1
+                            buf.append(b[i] == N ? LF : b[i])
+                            i += 1
+                            continue
+                        }
                         buf.append(b[i])
                         i += 1
                     }

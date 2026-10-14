@@ -1,8 +1,8 @@
 # CLAUDE.md
 
 A macOS QuickLook preview extension for KiCad `.kicad_pcb` files. It parses the board
-file directly and draw it with CoreGraphics, with no dependency on KiCad. The goal is one
-fit-to-window overview, not a faithful render: there is no zoom, no layer toggles and no text.
+file directly and draws it with CoreGraphics, with no dependency on KiCad. The goal is one
+fit-to-window overview, not a faithful render: there is no zoom and there are no layer toggles.
 
 ## Layout
 
@@ -11,7 +11,12 @@ fit-to-window overview, not a faithful render: there is no zoom, no layer toggle
   - `SExpr.swift`: byte-level S-expression parser. Atoms are kept as strings; numbers are parsed on demand.
   - `PCBBoard.swift`: walks the tree into per-layer `Shape`s, zone fills, vias and holes, in board mm (y down).
   - `Geometry.swift`: transforms, arcs from 3 points, pad outlines, gr_/fp_ graphics.
-  - `PCBRenderer.swift`: draws a `PCBBoard` fitted into a rect of a y-up `CGContext`.
+  - `Text.swift`: gr_text, fp_text and footprint `property` text as glyph outlines (system font
+    standing in for KiCad's stroke font; cap height = text size). Hidden text is skipped, footprint
+    text is kept upright, `${REFERENCE}`/`${VALUE}` are substituted, and `mirror` is honoured.
+  - `PCBRenderer.swift`: draws a `PCBBoard` fitted into a rect of a y-up `CGContext`. Draw order:
+    B.SilkS (yellowish) → copper back to front (translucent) → vias/holes → F.SilkS (off-white,
+    translucent) → Edge.Cuts.
   - `Sources/kiql-render`: CLI that renders a board to PNG for checking renderer changes.
 - `KiCadQL.xcodeproj`: host app `KiCadQL/` embeds `KiCadQLPreview/` (data-based `QLPreviewProvider`),
   which links the local `KiCadPCBKit` package. There is deliberately no thumbnail extension: Finder

@@ -7,6 +7,8 @@ public enum PCBRenderer {
         "F.Cu": "#c8102e", "B.Cu": "#1f5fbf", "In1.Cu": "#2e8b57", "In2.Cu": "#d48a00",
         "In3.Cu": "#8e44ad", "In4.Cu": "#16a085", "In5.Cu": "#b9770e", "In6.Cu": "#5d6d7e",
     ]
+    /// Off-white with a hint of yellow on the front; the back is a little more yellow.
+    static let frontSilk = hexColor("#f4efd6"), backSilk = hexColor("#ecdc9c")
 
     public static func draw(_ board: PCBBoard, in ctx: CGContext, rect: CGRect) {
         ctx.saveGState()
@@ -23,6 +25,9 @@ public enum PCBRenderer {
         ctx.translateBy(x: -b.minX, y: -b.minY)
         ctx.setLineCap(.round)
         ctx.setLineJoin(.round)
+
+        // back silkscreen sits under all the copper, showing through where the copper is translucent
+        silk(board.shapes["B.SilkS"] ?? [], backSilk, alpha: 0.9, ctx)
 
         // Copper, back to front. Each layer is drawn opaque into its own transparency group and composited
         // at one alpha, so overlapping pads and tracks on a layer don't darken each other.
@@ -49,13 +54,8 @@ public enum PCBRenderer {
             ctx.fillPath()
         }
 
-        // front silkscreen graphics (no text)
-        let silk = hexColor("#202020")
-        ctx.setAlpha(0.6)
-        ctx.setFillColor(silk)
-        ctx.setStrokeColor(silk)
-        paint(board.shapes["F.SilkS"] ?? [], ctx)
-        ctx.setAlpha(1)
+        // front silkscreen over everything but the outline
+        silk(board.shapes["F.SilkS"] ?? [], frontSilk, alpha: 0.8, ctx)
 
         // outline at a constant ~1.2 pt, whatever the zoom
         ctx.setStrokeColor(hexColor("#000000"))
@@ -64,6 +64,18 @@ public enum PCBRenderer {
             ctx.addPath(sh.path)
             ctx.strokePath()
         }
+    }
+
+    /// One silkscreen layer as a single translucent group, so overlapping strokes and glyphs don't stack.
+    private static func silk(_ shapes: [Shape], _ color: CGColor, alpha: CGFloat, _ ctx: CGContext) {
+        guard !shapes.isEmpty else { return }
+        ctx.setAlpha(alpha)
+        ctx.beginTransparencyLayer(auxiliaryInfo: nil)
+        ctx.setFillColor(color)
+        ctx.setStrokeColor(color)
+        paint(shapes, ctx)
+        ctx.endTransparencyLayer()
+        ctx.setAlpha(1)
     }
 
     private static func paint(_ shapes: [Shape], _ ctx: CGContext) {

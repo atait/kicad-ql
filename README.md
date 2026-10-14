@@ -5,7 +5,8 @@ get a fit-to-window overview. KiCad does not need to be installed or running, be
 is parsed and drawn directly.
 
 The render is an overview, not a replacement for KiCad. It draws copper (tracks, pads, zone fills),
-vias, holes, front silkscreen graphics and the board outline. It skips text.
+vias, holes, front and back silkscreen (including visible text) and the board outline. Text uses the
+system font rather than KiCad's stroke font.
 
 ## Layout
 
@@ -28,3 +29,31 @@ swift test --package-path KiCadPCBKit
 ## Build the QuickLook extension
 
 See [docs/XCODE.md](docs/XCODE.md).
+
+## Sharing
+
+`KiCadQL.app` can be zipped and sent to someone else (Finder ▸ Compress, or
+`ditto -c -k --keepParent KiCadQL.app KiCadQL.zip`), but how smoothly it opens depends on how it was
+signed. Export it with Product ▸ Archive so it is a Release build, which runs on both Apple Silicon
+and Intel Macs. The recipient needs macOS 14 or later.
+
+**Signed with a free Apple ID ("Personal Team")**: Gatekeeper rejects it on other Macs, because an
+*Apple Development* signature is only meant for your own machines. The recipient has to approve it:
+
+1. Move `KiCadQL.app` to `/Applications` and open it once. When the "cannot be opened" warning
+   appears, click Done.
+2. Go to System Settings ▸ Privacy & Security, scroll down and click **Open Anyway** next to
+   KiCadQL. Alternatively, run `xattr -dr com.apple.quarantine /Applications/KiCadQL.app` in Terminal.
+3. Open the app again. If needed, enable *KiCad PCB Preview* in System Settings ▸ General ▸ Login
+   Items & Extensions ▸ Quick Look.
+
+**Signed with a paid Apple Developer Program account ($99/year)**: export with Product ▸ Archive ▸
+Distribute App ▸ **Direct Distribution**. Xcode signs the app with a *Developer ID* certificate and
+has Apple notarize it. Recipients can then unzip it, drag it to `/Applications` and open it with no
+warnings. This is the build to attach to a GitHub release.
+
+**From source**: anyone with Xcode can build it themselves by following
+[docs/XCODE.md](docs/XCODE.md).
+
+To check how a copy is signed: `codesign -dvv KiCadQL.app` (look at the first `Authority=` line) and
+`spctl -a -vv KiCadQL.app` (this says `accepted` for a notarized Developer ID build).

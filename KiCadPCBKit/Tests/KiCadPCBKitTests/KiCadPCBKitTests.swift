@@ -54,3 +54,29 @@ func parsesAndDrawsExample(_ name: String) throws {
     PCBRenderer.draw(board, in: ctx, rect: CGRect(origin: .zero, size: size))
     #expect(ctx.makeImage() != nil)
 }
+
+@Test func unescapesNewlines() throws {
+    let e = try SExprParser.parse(Data(#"(gr_text "a\nb")"#.utf8))
+    #expect(e.string(1) == "a\nb")
+}
+
+@Test func silkscreenTextIsDrawnUnlessHidden() throws {
+    let board = try PCBBoard(data: Data("""
+        (kicad_pcb
+          (gr_text "TOP" (at 10 10) (layer "F.SilkS") (effects (font (size 2 2))))
+          (gr_text "FAB" (at 10 10) (layer "F.Fab") (effects (font (size 2 2))))
+          (footprint "R" (at 50 50 90)
+            (property "Reference" "R1" (at 0 -2 90) (layer "F.SilkS") (effects (font (size 1 1))))
+            (property "Value" "10k" (at 0 2 90) (layer "F.SilkS") (hide yes) (effects (font (size 1 1))))
+            (fp_text user "${REFERENCE}" (at 0 0) (layer "B.SilkS") (effects (font (size 1 1)) (justify mirror)))))
+        """.utf8))
+    let front = try #require(board.shapes["F.SilkS"])
+    #expect(front.count == 2)                                         // TOP and R1; 10k is hidden
+    let top = front[0].path.boundingBoxOfPath
+    #expect(abs(top.height - 2) < 0.1 && abs(top.midX - 10) < 0.1)   // cap height = size; centred
+    // R1 is at (0, -2) in a footprint rotated 90° at (50, 50): that's (48, 50) on the board
+    let r1 = front[1].path.boundingBoxOfPath
+    #expect(abs(r1.midX - 48) < 0.2 && abs(r1.midY - 50) < 0.5 && r1.height > r1.width)   // reads vertically
+    #expect(board.shapes["B.SilkS"]?.count == 1)                      // ${REFERENCE} → R1
+    #expect(board.shapes["F.Fab"] == nil)
+}
