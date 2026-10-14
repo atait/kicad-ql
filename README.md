@@ -1,8 +1,8 @@
 # KiCad QuickLook
 
 A macOS QuickLook extension for KiCad boards (`.kicad_pcb`). Press space on a board in Finder and you
-get a fit-to-window overview. Finder also shows the board as the file's icon. KiCad does not need to
-be installed or running, because the board file is parsed and drawn directly.
+get a fit-to-window overview. KiCad does not need to be installed or running, because the board file
+is parsed and drawn directly.
 
 The render is an overview, not a replacement for KiCad. It draws copper (tracks, pads, zone fills),
 vias, holes, front silkscreen graphics and the board outline. It skips text.
@@ -12,10 +12,9 @@ vias, holes, front silkscreen graphics and the board outline. It skips text.
 | Path | What it is |
 | --- | --- |
 | `KiCadPCBKit/` | Swift package: S-expression parser, board model, CoreGraphics renderer, `kiql-render` CLI, tests |
-| `KiCadQL.xcodeproj` | Xcode project: host app plus the Preview and Thumbnail extensions |
-| `KiCadQL/` | Host app. It exists to carry the extensions and declare the `.kicad_pcb` file type |
+| `KiCadQL.xcodeproj` | Xcode project: host app plus the Preview extension |
+| `KiCadQL/` | Host app. It exists to carry the extension and declare the `.kicad_pcb` file type |
 | `KiCadQLPreview/` | QuickLook preview extension (spacebar) |
-| `KiCadQLThumbnail/` | QuickLook thumbnail extension (Finder icons) |
 | `examples/` | Sample boards for testing |
 | `docs/XCODE.md` | Step-by-step guide for building and installing with Xcode |
 
