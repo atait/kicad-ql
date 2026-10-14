@@ -73,16 +73,26 @@ is unavailable for your team, change the prefix to something unique.
 
 ### Install it permanently
 
-The app Xcode runs lives deep inside `~/Library/Developer/Xcode/DerivedData` and can be deleted at
-any time. To keep the plugin around:
+⌘R is for development only. The app it runs lives in `~/Library/Developer/Xcode/DerivedData`, and
+QuickLook stops using it once Xcode quits: previews go back to a generic icon even though the
+extension is still enabled in System Settings. To keep the preview working all the time, install a
+copy:
 
-1. In Xcode, choose Product ▸ **Archive**. When the Organizer opens, choose **Distribute App** ▸
-   **Custom** ▸ **Copy App** and save it. A quicker option is Product ▸ *Show Build Folder in
-   Finder*, then `Products/Debug/KiCadQL.app`.
-2. Move `KiCadQL.app` into `/Applications` and open it once.
+1. In Xcode, choose Product ▸ **Archive**. This makes a Release build. When the Organizer window
+   opens, select the new archive and choose **Distribute App** ▸ **Custom** ▸ **Copy App**, then save
+   it somewhere such as the Desktop.
+2. Quit any running `KiCadQL`, move the exported `KiCadQL.app` into `/Applications`, and open it once.
+   You can quit it right away.
+3. Run `qlmanage -r && qlmanage -r cache`, then check that the registered path is now under
+   `/Applications`:
 
-If more than one copy of the app exists (DerivedData plus `/Applications`), macOS may pick either
-one. `pluginkit -mv -p com.apple.quicklook.preview | grep -i kicad` shows which copy is registered.
+   ```sh
+   pluginkit -mv -p com.apple.quicklook.preview | grep -i kicad
+   ```
+
+After a change you want to keep, repeat these steps to replace the copy in `/Applications`. While you
+are developing, ⌘R in Xcode may temporarily take over from the installed copy. Quit Xcode and run
+`qlmanage -r` to go back to it.
 
 ## The edit → test loop
 
@@ -117,6 +127,7 @@ When you want to see the change in Finder:
 | --- | --- |
 | Space shows a generic file icon | Did the app launch at least once? Is the extension enabled in System Settings? Is it listed by `pluginkit -mv -p com.apple.quicklook.preview \| grep -i kicad`? |
 | Still generic after that | `mdls -name kMDItemContentType board.kicad_pcb` should print `org.kicad.pcb`. If it prints `dyn.…`, the type declaration hasn't been picked up. Relaunch the app, then run `touch board.kicad_pcb`. |
+| Works only while Xcode is open | You are running the DerivedData build. Install a copy in `/Applications` (see *Install it permanently*) |
 | Preview is stale after a rebuild | `qlmanage -r && qlmanage -r cache`, and `killall -9 KiCadQLPreview` |
 | "Signing for … requires a development team" | Set the Team on **both** targets (see above) |
 | Build errors mentioning `KiCadPCBKit` | File ▸ Packages ▸ **Reset Package Caches**, then build again |
