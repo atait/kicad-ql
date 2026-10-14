@@ -1,0 +1,21 @@
+# macOS
+.DS_Store
+
+# Scratch work, not part of the project
+brainstorm/
+
+# Swift Package Manager
+.build/
+.swiftpm/
+Package.resolved
+
+# Xcode per-user state and build output
+xcuserdata/
+*.xcuserstate
+*.xcscmblueprint
+DerivedData/
+build/
+
+# Renders produced while testing
+*.png
+!docs/**/*.png
