@@ -4,6 +4,7 @@ import KiCadPCBKit
 
 /// View-based preview: the board, with a legend of layer buttons in the top-left corner. Clicking a
 /// layer brings it to the front (PCBRenderer's focus mode); clicking it again goes back to the overview.
+/// A "View from back" toggle under the layers mirrors the board and puts the back layers nearest.
 /// Info.plist needs QLIsDataBasedPreview = NO and
 /// NSExtensionPrincipalClass = $(PRODUCT_MODULE_NAME).PreviewViewController.
 class PreviewViewController: NSViewController, QLPreviewingController {
@@ -31,6 +32,7 @@ class PreviewViewController: NSViewController, QLPreviewingController {
         ])
         legend.isHidden = true
         legend.onSelect = { [weak self] layer in self?.boardView.setFocus(layer) }
+        legend.onFlip = { [weak self] fromBack in self?.boardView.setFromBack(fromBack) }
         view = root
     }
 
@@ -51,12 +53,13 @@ class PreviewViewController: NSViewController, QLPreviewingController {
     }
 }
 
-/// Draws the board, and cross-fades to the new picture when the focus changes.
+/// Draws the board, and cross-fades to the new picture when the focus or the side changes.
 final class BoardView: NSView {
     var board: PCBBoard? { didSet { needsDisplay = true } }
     /// A rect the board should stay clear of (the legend), in this view's coordinates.
     var avoid: CGRect = .zero { didSet { if avoid != oldValue { needsDisplay = true } } }
     private var focus: String?
+    private var fromBack = false
 
     override init(frame: NSRect) {
         super.init(frame: frame)
@@ -68,10 +71,20 @@ final class BoardView: NSView {
     func setFocus(_ newFocus: String?) {          // not `layer`: that would hide NSView.layer below
         guard newFocus != focus else { return }
         focus = newFocus
+        crossFade()
+    }
+
+    func setFromBack(_ back: Bool) {
+        guard back != fromBack else { return }
+        fromBack = back
+        crossFade()
+    }
+
+    private func crossFade() {
         let fade = CATransition()
         fade.type = .fade
-        fade.duration = 0.15
-        layer?.add(fade, forKey: "focus")
+        fade.duration = 0.07
+        layer?.add(fade, forKey: "fade")
         needsDisplay = true
     }
 
@@ -79,7 +92,7 @@ final class BoardView: NSView {
         guard let board, let ctx = NSGraphicsContext.current?.cgContext else { return }
         ctx.setFillColor(PCBRenderer.background)       // also behind the legend, beside the fitted board
         ctx.fill(bounds)
-        PCBRenderer.draw(board, in: ctx, rect: boardRect(board), focus: focus)
+        PCBRenderer.draw(board, in: ctx, rect: boardRect(board), focus: focus, fromBack: fromBack)
     }
 
     /// Where to fit the board: the whole view if the board then misses `avoid`; otherwise the part beside
@@ -98,11 +111,26 @@ final class BoardView: NSView {
     }
 }
 
-/// A frosted panel with one toggle button per layer, front to back. At most one is on.
+/// A frosted panel with one toggle button per layer, nearest the viewer first (at most one is on), and
+/// under them a "View from back" toggle, which also turns the list round.
 final class LegendView: NSVisualEffectView {
     var onSelect: ((String?) -> Void)?
+    var onFlip: ((Bool) -> Void)?
+    /// Front to back, as `PCBRenderer.layers(of:)` gives them.
     var layers: [String] = [] { didSet { rebuild() } }
     private let stack = NSStackView()
+    private var selected: String?
+    private lazy var flipButton: NSButton = {
+        let b = NSButton(title: "View from back",
+                         image: NSImage(systemSymbolName: "arrow.left.and.right", accessibilityDescription: nil) ?? NSImage(),
+                         target: self, action: #selector(flipped))
+        b.setButtonType(.pushOnPushOff)
+        b.bezelStyle = .recessed
+        b.imagePosition = .imageLeading
+        b.alignment = .left
+        b.toolTip = "Show the board as seen from the bottom, mirrored, with the back layers on top."
+        return b
+    }()
 
     override init(frame: NSRect) {
         super.init(frame: frame)
@@ -128,7 +156,7 @@ final class LegendView: NSVisualEffectView {
 
     private func rebuild() {
         stack.arrangedSubviews.forEach { $0.removeFromSuperview() }
-        for layer in layers {
+        for layer in flipButton.state == .on ? layers.reversed() : layers {
             let b = NSButton(title: Self.displayName(layer), image: Self.swatch(layer),
                              target: self, action: #selector(clicked))
             b.setButtonType(.pushOnPushOff)
@@ -137,14 +165,29 @@ final class LegendView: NSVisualEffectView {
             b.alignment = .left
             b.identifier = NSUserInterfaceItemIdentifier(layer)
             b.toolTip = "Bring \(Self.displayName(layer)) to the front. Click again to show all layers."
-            stack.addArrangedSubview(b)
-            b.widthAnchor.constraint(equalTo: stack.widthAnchor, constant: -12).isActive = true
+            b.state = layer == selected ? .on : .off
+            add(b)
         }
+        let line = NSBox()
+        line.boxType = .separator
+        add(line)
+        add(flipButton)
+    }
+
+    private func add(_ v: NSView) {
+        stack.addArrangedSubview(v)
+        v.widthAnchor.constraint(equalTo: stack.widthAnchor, constant: -12).isActive = true
     }
 
     @objc private func clicked(_ sender: NSButton) {
-        for case let b as NSButton in stack.arrangedSubviews where b !== sender { b.state = .off }
-        onSelect?(sender.state == .on ? sender.identifier?.rawValue : nil)
+        for case let b as NSButton in stack.arrangedSubviews where b !== sender && b !== flipButton { b.state = .off }
+        selected = sender.state == .on ? sender.identifier?.rawValue : nil
+        onSelect?(selected)
+    }
+
+    @objc private func flipped(_ sender: NSButton) {
+        rebuild()                                  // nearest layer first, from whichever side
+        onFlip?(sender.state == .on)
     }
 
     private static func displayName(_ layer: String) -> String {

@@ -108,3 +108,31 @@ func focusedLayerIsOpaqueOnTop(_ layer: String) throws {
                                                                     intent: .defaultIntent, options: nil)?.components)
     for i in 0..<3 { #expect(abs(Double(px[i]) - Double(want[i]) * 255) <= 2) }
 }
+
+/// From the back the board is mirrored and the back copper is nearest: in the overview, the pixel at
+/// the crossing is mostly F.Cu red from the front and mostly B.Cu blue from the back. An F.Cu pad on
+/// the left of the board shows up on the right.
+@Test(arguments: [false, true])
+func backViewMirrorsAndRestacks(_ fromBack: Bool) throws {
+    let board = try PCBBoard(data: Data("""
+        (kicad_pcb
+          (gr_rect (start 0 0) (end 10 10) (layer "Edge.Cuts") (stroke (width 0.1)))
+          (segment (start 0 5) (end 10 5) (width 2) (layer "F.Cu"))
+          (segment (start 5 0) (end 5 10) (width 2) (layer "B.Cu"))
+          (segment (start 2 2) (end 2.1 2) (width 1.5) (layer "F.Cu")))
+        """.utf8))
+    let ctx = try #require(CGContext(data: nil, width: 120, height: 120, bitsPerComponent: 8, bytesPerRow: 120 * 4,
+                                     space: CGColorSpace(name: CGColorSpace.sRGB)!,
+                                     bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue))
+    PCBRenderer.draw(board, in: ctx, rect: CGRect(x: 0, y: 0, width: 120, height: 120), fromBack: fromBack)
+    func pixel(_ x: Int, _ y: Int) -> (r: Int, b: Int) {      // y counts from the top
+        let p = ctx.data!.assumingMemoryBound(to: UInt8.self) + (y * 120 + x) * 4
+        return (Int(p[0]), Int(p[2]))
+    }
+    let crossing = pixel(60, 60)
+    #expect(fromBack ? crossing.b > crossing.r : crossing.r > crossing.b)
+    // board x = 2 mm is 30 px from the left (11 px/mm, 1 mm margin) on the front, 30 px from the right on the back
+    let pad = pixel(fromBack ? 89 : 30, 33), mirror = pixel(fromBack ? 30 : 89, 33)
+    #expect(pad.r > 150 && pad.b < 120)
+    #expect(mirror.r > 240 && mirror.b > 240)                 // background
+}

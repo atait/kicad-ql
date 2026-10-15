@@ -3,6 +3,8 @@
 A macOS QuickLook extension for KiCad boards (`.kicad_pcb`). Press space on a board in Finder and you
 get a fit-to-window overview. A legend in the corner lists the copper and silkscreen layers. Click a
 layer to bring it to the front, with the rest faded, and click it again to go back to the overview.
+**View from back** shows the board as seen from the bottom: mirrored, with the back layers on top, and
+with the same colours (B.Cu stays blue).
 KiCad does not need to be installed or running, because the board file is parsed and drawn directly.
 
 The render is an overview, not a replacement for KiCad. It draws copper (tracks, pads, zone fills),

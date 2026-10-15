@@ -15,6 +15,8 @@ public enum PCBRenderer {
     static let dimColor = hexColor("#808080"), dimAlpha: CGFloat = 0.25
     /// Dark edge drawn around focused silkscreen, so off-white still reads over a light background.
     static let silkHalo = hexColor("#4a4430")
+    /// Copper zone fills are the layer colour this much greyer, at this opacity, so tracks stand out on them.
+    static let zoneDesaturation: CGFloat = 0.3, zoneAlpha: CGFloat = 0.45
 
     /// The layers a viewer can focus, front to back: F.SilkS, F.Cu, In1.Cu…, B.Cu, B.SilkS.
     /// Silkscreen layers are listed only if the board has something on them.
@@ -36,7 +38,12 @@ public enum PCBRenderer {
 
     /// With `focus` nil this is the overview. With a layer from `layers(of:)`, that layer is drawn
     /// opaque on top and every other layer is drawn grey and faint underneath it.
-    public static func draw(_ board: PCBBoard, in ctx: CGContext, rect: CGRect, focus: String? = nil) {
+    ///
+    /// `fromBack` shows the board as seen from the bottom: mirrored left to right, with the back layers
+    /// nearest the viewer. Colours keep their meaning (B.Cu is still blue), and back silkscreen text,
+    /// which KiCad stores mirrored, reads the right way round.
+    public static func draw(_ board: PCBBoard, in ctx: CGContext, rect: CGRect, focus: String? = nil,
+                            fromBack: Bool = false) {
         ctx.saveGState()
         defer { ctx.restoreGState() }
         ctx.setFillColor(background)
@@ -45,14 +52,18 @@ public enum PCBRenderer {
         let b = board.bounds
         guard b.width > 0, b.height > 0 else { return }
         let s = min(rect.width / b.width, rect.height / b.height)
-        // KiCad's y points down: put the board's top edge (b.minY) at the top of the rect.
-        ctx.translateBy(x: rect.midX - b.width * s / 2, y: rect.midY + b.height * s / 2)
-        ctx.scaleBy(x: s, y: -s)
+        // KiCad's y points down: put the board's top edge (b.minY) at the top of the rect. From the back,
+        // x is mirrored too, so the board's left edge (b.minX) goes on the right.
+        let sx = fromBack ? -s : s
+        ctx.translateBy(x: rect.midX - b.width * sx / 2, y: rect.midY + b.height * s / 2)
+        ctx.scaleBy(x: sx, y: -s)
         ctx.translateBy(x: -b.minX, y: -b.minY)
         ctx.setLineCap(.round)
         ctx.setLineJoin(.round)
 
-        let stack = layers(of: board).reversed()                  // back to front
+        var stack = Array(layers(of: board).reversed())           // furthest from the viewer first
+        if fromBack { stack.reverse() }
+        let nearSilk = fromBack ? "B.SilkS" : "F.SilkS", nearCopper = fromBack ? "B.Cu" : "F.Cu"
         if let focus, stack.contains(focus) {
             for layer in stack where layer != focus {
                 drawLayer(layer, board, dimColor, alpha: dimAlpha, ctx)
@@ -63,15 +74,15 @@ public enum PCBRenderer {
             if copper { drawVias(board, alpha: 1, ctx) }
             punchHoles(board, ctx)
         } else {
-            // Overview: back silkscreen under the copper, so it shows through where the copper is translucent;
-            // copper back to front; vias and holes; front silkscreen over everything but the outline.
-            for layer in stack where layer != "F.SilkS" {
-                let alpha: CGFloat = layer == "B.SilkS" ? 0.9 : layer == "F.Cu" ? 0.85 : 0.7
+            // Overview: the far silkscreen under the copper, so it shows through where the copper is
+            // translucent; copper far to near; vias and holes; near silkscreen over everything but the outline.
+            for layer in stack where layer != nearSilk {
+                let alpha: CGFloat = layer.hasSuffix(".SilkS") ? 0.9 : layer == nearCopper ? 0.85 : 0.7
                 drawLayer(layer, board, color(of: layer), alpha: alpha, ctx)
             }
             drawVias(board, alpha: 1, ctx)
             punchHoles(board, ctx)
-            drawLayer("F.SilkS", board, frontSilk, alpha: 0.8, ctx)
+            drawLayer(nearSilk, board, color(of: nearSilk), alpha: 0.8, ctx)
         }
 
         // outline at a constant ~1.2 pt, whatever the zoom
@@ -97,13 +108,22 @@ public enum PCBRenderer {
             ctx.setStrokeColor(silkHalo)
             paint(shapes, ctx, widen: 0.16)
         }
-        ctx.setFillColor(color.copy(alpha: 0.45) ?? color)
+        ctx.setFillColor(zoneColor(color))
         paint(zones, ctx)
         ctx.setFillColor(color)
         ctx.setStrokeColor(color)
         paint(shapes, ctx)
         ctx.endTransparencyLayer()
         ctx.setAlpha(1)
+    }
+
+    /// `color` mixed `zoneDesaturation` of the way towards the grey of the same brightness.
+    private static func zoneColor(_ color: CGColor) -> CGColor {
+        guard let c = color.converted(to: CGColorSpace(name: CGColorSpace.sRGB)!, intent: .defaultIntent,
+                                      options: nil)?.components, c.count >= 3 else { return color }
+        let grey = 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2]
+        func mix(_ v: CGFloat) -> CGFloat { v + (grey - v) * zoneDesaturation }
+        return CGColor(srgbRed: mix(c[0]), green: mix(c[1]), blue: mix(c[2]), alpha: zoneAlpha)
     }
 
     /// Every via drill and pad hole, filled with the background colour.

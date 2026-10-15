@@ -1,6 +1,7 @@
 // kiql-render: test the renderer outside QuickLook.
-//   swift run -c release --package-path KiCadPCBKit kiql-render board.kicad_pcb out.png [max_px] [--focus LAYER]
-// --focus draws what the QuickLook preview shows after clicking that layer in the legend.
+//   swift run -c release --package-path KiCadPCBKit kiql-render board.kicad_pcb out.png [max_px] [--focus LAYER] [--back]
+// --focus draws what the QuickLook preview shows after clicking that layer in the legend;
+// --back draws the board as seen from the bottom ("View from back" in the legend).
 import Foundation
 import KiCadPCBKit
 import CoreGraphics
@@ -13,8 +14,10 @@ if let i = args.firstIndex(of: "--focus"), i + 1 < args.count {
     focus = args[i + 1]
     args.removeSubrange(i...(i + 1))
 }
+let fromBack = args.contains("--back")
+args.removeAll { $0 == "--back" }
 guard args.count >= 3 else {
-    print("usage: kiql-render board.kicad_pcb out.png [max_px] [--focus LAYER]")
+    print("usage: kiql-render board.kicad_pcb out.png [max_px] [--focus LAYER] [--back]")
     exit(1)
 }
 let maxPx = CGFloat(args.count > 3 ? Double(args[3]) ?? 1600 : 1600)
@@ -32,7 +35,7 @@ if let focus, !PCBRenderer.layers(of: board).contains(focus) {
     print("no layer \(focus); this board has: \(PCBRenderer.layers(of: board).joined(separator: " "))")
     exit(1)
 }
-PCBRenderer.draw(board, in: ctx, rect: CGRect(x: 0, y: 0, width: w, height: h), focus: focus)
+PCBRenderer.draw(board, in: ctx, rect: CGRect(x: 0, y: 0, width: w, height: h), focus: focus, fromBack: fromBack)
 let t2 = Date()
 
 guard let image = ctx.makeImage(),
