@@ -6,9 +6,9 @@
 	<dict>
 		<key>NSExtensionAttributes</key>
 		<dict>
-			<!-- data-based: QuickLook asks PreviewProvider for drawing, not for an NSViewController -->
+			<!-- view-based: the preview is a live NSViewController, so the layer legend can take clicks -->
 			<key>QLIsDataBasedPreview</key>
-			<true/>
+			<false/>
 			<key>QLSupportedContentTypes</key>
 			<array>
 				<string>org.kicad.pcb</string>
@@ -19,7 +19,7 @@
 		<key>NSExtensionPointIdentifier</key>
 		<string>com.apple.quicklook.preview</string>
 		<key>NSExtensionPrincipalClass</key>
-		<string>$(PRODUCT_MODULE_NAME).PreviewProvider</string>
+		<string>$(PRODUCT_MODULE_NAME).PreviewViewController</string>
 	</dict>
 </dict>
 </plist>

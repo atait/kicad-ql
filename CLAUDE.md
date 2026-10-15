@@ -24,12 +24,20 @@ fit-to-window overview, not a faithful render: there is no zoom and there are no
     - `layers(of:)` lists the layers that can be focused, front to back. `color(of:)` gives each one's
       colour, for the legend.
   - `Sources/kiql-render`: CLI that renders a board to PNG for checking renderer changes.
-- `KiCadQL.xcodeproj`: host app `KiCadQL/` embeds `KiCadQLPreview/` (data-based `QLPreviewProvider`),
-  which links the local `KiCadPCBKit` package. There is deliberately no thumbnail extension: Finder
+- `KiCadQL.xcodeproj`: host app `KiCadQL/` embeds `KiCadQLPreview/`, which links the local
+  `KiCadPCBKit` package. The extension is **view-based** (`QLIsDataBasedPreview` = NO):
+  `PreviewViewController` hosts `BoardView`, which redraws with `PCBRenderer` and cross-fades on a
+  focus change, and `LegendView`, an `NSVisualEffectView` with one toggle per layer. The legend is
+  hidden below 300×220 pt, and the board is fitted so that it stays clear of the legend. Clicks and
+  hover reach the view in the Finder spacebar panel, `qlmanage -p` and the column-view preview pane;
+  keyboard input does not, because QuickLook keeps the keys. Use colours that adapt to Light and Dark
+  Mode (e.g. `NSVisualEffectView`). A `cgColor` taken once at setup stays fixed and can end up white
+  on white in Dark Mode. There is deliberately no thumbnail extension: Finder
   icons were too small to be useful, so it was removed.
   The project uses file-system-synchronized folders, so new `.swift` files in those folders are picked
   up automatically.
-- `examples/`: real boards (KiCad 7 and KiCad 10 formats), used by the tests.
+- `examples/`: real boards (KiCad 7 and KiCad 10 formats; `LSHM-2-Dsub-v2` has 4 copper layers), used
+  by the tests.
 - `brainstorm/`: original prototype. It is gitignored and should not be committed.
 
 ## Commands

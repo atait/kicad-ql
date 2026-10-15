@@ -2,7 +2,8 @@ import CoreGraphics
 
 /// Draws a PCBBoard fitted (aspect preserved, centred) into `rect` of a y-up CGContext.
 public enum PCBRenderer {
-    static let background = hexColor("#fbfbf8")
+    /// Fills `rect` before the board is drawn. Views around the board should use it too.
+    public static let background = hexColor("#fbfbf8")
     static let copperColors: [String: String] = [
         "F.Cu": "#c8102e", "B.Cu": "#1f5fbf", "In1.Cu": "#2e8b57", "In2.Cu": "#d48a00",
         "In3.Cu": "#8e44ad", "In4.Cu": "#16a085", "In5.Cu": "#b9770e", "In6.Cu": "#5d6d7e",

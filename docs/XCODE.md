@@ -13,7 +13,7 @@ when the host app is launched for the first time.
 ```
 KiCadQL.app                          ← host app (KiCadQL/), just shows an "installed" window
 └── Contents/PlugIns/
-    └── KiCadQLPreview.appex         ← spacebar preview   (KiCadQLPreview/PreviewProvider.swift)
+    └── KiCadQLPreview.appex         ← spacebar preview   (KiCadQLPreview/PreviewViewController.swift)
               links ↓
         KiCadPCBKit (Swift package) ← parser + renderer, testable without Xcode
 ```

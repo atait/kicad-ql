@@ -1,8 +1,9 @@
 # KiCad QuickLook
 
 A macOS QuickLook extension for KiCad boards (`.kicad_pcb`). Press space on a board in Finder and you
-get a fit-to-window overview. KiCad does not need to be installed or running, because the board file
-is parsed and drawn directly.
+get a fit-to-window overview. A legend in the corner lists the copper and silkscreen layers. Click a
+layer to bring it to the front, with the rest faded, and click it again to go back to the overview.
+KiCad does not need to be installed or running, because the board file is parsed and drawn directly.
 
 The render is an overview, not a replacement for KiCad. It draws copper (tracks, pads, zone fills),
 vias, holes, front and back silkscreen (including visible text) and the board outline. Text uses the

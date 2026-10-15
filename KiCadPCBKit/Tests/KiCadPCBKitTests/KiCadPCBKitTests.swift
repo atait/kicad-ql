@@ -40,7 +40,7 @@ let examples = URL(fileURLWithPath: #filePath)
     #expect(board.fittedSize(in: CGSize(width: 400, height: 400)) == CGSize(width: 400, height: 200))
 }
 
-@Test(arguments: ["LoomRide-v1.kicad_pcb", "Matrix-testLoad-v2.kicad_pcb"])
+@Test(arguments: ["LoomRide-v1.kicad_pcb", "Matrix-testLoad-v2.kicad_pcb", "LSHM-2-Dsub-v2.kicad_pcb"])
 func parsesAndDrawsExample(_ name: String) throws {
     let board = try PCBBoard(url: examples.appendingPathComponent(name))
     #expect(board.copperLayers.contains("F.Cu"))
