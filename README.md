@@ -9,7 +9,8 @@ KiCad doesn't need to be installed.
 
 - **Zoom**: pinch, or use the mouse wheel.
 - **Pan**: scroll with two fingers, or click and drag.
-- **Fit to window**: double-click, or double-tap with two fingers.
+- **Fit to window**: double-tap with two fingers.
+- **Open in KiCad**: double-click or Cmd+O.
 
 **Boards:** click a layer in the legend to bring it to the front. Click it again to see all layers.
 **View from back** shows the board from the bottom, mirrored.

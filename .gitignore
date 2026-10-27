@@ -3,6 +3,7 @@
 
 # Scratch work, not part of the project
 brainstorm/
+dist/
 
 # Swift Package Manager
 .build/
