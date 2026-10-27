@@ -19,6 +19,7 @@ build/
 # Renders produced while testing
 *.png
 !docs/**/*.png
+!images/*.png
 
 # KiCad per-user state, lock files, backups and caches
 *.kicad_prl
