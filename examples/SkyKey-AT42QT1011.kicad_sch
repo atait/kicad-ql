@@ -1865,7 +1865,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-00006094fffc")
-		(property "Reference" "U2"
+		(property "Reference" "U3"
 			(at 147.32 84.3026 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1982,6 +1982,40 @@
 					(unit 1)
 				)
 			)
+			(project "SkySense-bank"
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-000060931a6c"
+					(reference "U3")
+					(unit 1)
+				)
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-00006095a3e7"
+					(reference "U3")
+					(unit 1)
+				)
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-00006095a595"
+					(reference "U3")
+					(unit 1)
+				)
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-00006095a623"
+					(reference "U3")
+					(unit 1)
+				)
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-00006097747f"
+					(reference "U3")
+					(unit 1)
+				)
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-00006097748e"
+					(reference "U3")
+					(unit 1)
+				)
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-000060ad1e09"
+					(reference "U3")
+					(unit 1)
+				)
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-000060b0a1cf"
+					(reference "U3")
+					(unit 1)
+				)
+			)
 			(project "SkyKey-AT42QT1011"
 				(path "/deee5720-6fdf-4159-a283-c26d883a64cf"
 					(reference "U601")
@@ -2001,7 +2035,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-00006095271e")
-		(property "Reference" "R4"
+		(property "Reference" "R6"
 			(at 181.5084 100.7872 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2107,6 +2141,40 @@
 					(unit 1)
 				)
 			)
+			(project "SkySense-bank"
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-000060931a6c"
+					(reference "R6")
+					(unit 1)
+				)
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-00006095a3e7"
+					(reference "R6")
+					(unit 1)
+				)
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-00006095a595"
+					(reference "R6")
+					(unit 1)
+				)
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-00006095a623"
+					(reference "R6")
+					(unit 1)
+				)
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-00006097747f"
+					(reference "R6")
+					(unit 1)
+				)
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-00006097748e"
+					(reference "R6")
+					(unit 1)
+				)
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-000060ad1e09"
+					(reference "R6")
+					(unit 1)
+				)
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-000060b0a1cf"
+					(reference "R6")
+					(unit 1)
+				)
+			)
 			(project "SkyKey-AT42QT1011"
 				(path "/deee5720-6fdf-4159-a283-c26d883a64cf"
 					(reference "R602")
@@ -2126,7 +2194,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-000060989c08")
-		(property "Reference" "C7"
+		(property "Reference" "C10"
 			(at 143.51 82.55 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2232,6 +2300,40 @@
 					(unit 1)
 				)
 			)
+			(project "SkySense-bank"
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-000060931a6c"
+					(reference "C10")
+					(unit 1)
+				)
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-00006095a3e7"
+					(reference "C10")
+					(unit 1)
+				)
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-00006095a595"
+					(reference "C10")
+					(unit 1)
+				)
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-00006095a623"
+					(reference "C10")
+					(unit 1)
+				)
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-00006097747f"
+					(reference "C10")
+					(unit 1)
+				)
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-00006097748e"
+					(reference "C10")
+					(unit 1)
+				)
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-000060ad1e09"
+					(reference "C10")
+					(unit 1)
+				)
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-000060b0a1cf"
+					(reference "C10")
+					(unit 1)
+				)
+			)
 			(project "SkyKey-AT42QT1011"
 				(path "/deee5720-6fdf-4159-a283-c26d883a64cf"
 					(reference "C601")
@@ -2251,7 +2353,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-0000609ba467")
-		(property "Reference" "C8"
+		(property "Reference" "C11"
 			(at 168.7068 102.9716 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2357,6 +2459,40 @@
 					(unit 1)
 				)
 			)
+			(project "SkySense-bank"
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-000060931a6c"
+					(reference "C11")
+					(unit 1)
+				)
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-00006095a3e7"
+					(reference "C11")
+					(unit 1)
+				)
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-00006095a595"
+					(reference "C11")
+					(unit 1)
+				)
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-00006095a623"
+					(reference "C11")
+					(unit 1)
+				)
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-00006097747f"
+					(reference "C11")
+					(unit 1)
+				)
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-00006097748e"
+					(reference "C11")
+					(unit 1)
+				)
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-000060ad1e09"
+					(reference "C11")
+					(unit 1)
+				)
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-000060b0a1cf"
+					(reference "C11")
+					(unit 1)
+				)
+			)
 			(project "SkyKey-AT42QT1011"
 				(path "/deee5720-6fdf-4159-a283-c26d883a64cf"
 					(reference "C602")
@@ -2376,7 +2512,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-000060a24008")
-		(property "Reference" "#PWR013"
+		(property "Reference" "#PWR017"
 			(at 147.32 120.65 0)
 			(hide yes)
 			(show_name no)
@@ -2467,6 +2603,40 @@
 					(unit 1)
 				)
 			)
+			(project "SkySense-bank"
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-000060931a6c"
+					(reference "#PWR017")
+					(unit 1)
+				)
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-00006095a3e7"
+					(reference "#PWR017")
+					(unit 1)
+				)
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-00006095a595"
+					(reference "#PWR017")
+					(unit 1)
+				)
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-00006095a623"
+					(reference "#PWR017")
+					(unit 1)
+				)
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-00006097747f"
+					(reference "#PWR017")
+					(unit 1)
+				)
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-00006097748e"
+					(reference "#PWR017")
+					(unit 1)
+				)
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-000060ad1e09"
+					(reference "#PWR017")
+					(unit 1)
+				)
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-000060b0a1cf"
+					(reference "#PWR017")
+					(unit 1)
+				)
+			)
 			(project "SkyKey-AT42QT1011"
 				(path "/deee5720-6fdf-4159-a283-c26d883a64cf"
 					(reference "#PWR0601")
@@ -2486,7 +2656,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-000060a48579")
-		(property "Reference" "KS4"
+		(property "Reference" "KS6"
 			(at 67.31 49.53 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2585,6 +2755,40 @@
 					(unit 1)
 				)
 			)
+			(project "SkySense-bank"
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-000060931a6c"
+					(reference "KS6")
+					(unit 1)
+				)
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-00006095a3e7"
+					(reference "KS6")
+					(unit 1)
+				)
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-00006095a595"
+					(reference "KS6")
+					(unit 1)
+				)
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-00006095a623"
+					(reference "KS6")
+					(unit 1)
+				)
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-00006097747f"
+					(reference "KS6")
+					(unit 1)
+				)
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-00006097748e"
+					(reference "KS6")
+					(unit 1)
+				)
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-000060ad1e09"
+					(reference "KS6")
+					(unit 1)
+				)
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-000060b0a1cf"
+					(reference "KS6")
+					(unit 1)
+				)
+			)
 			(project "SkyKey-AT42QT1011"
 				(path "/deee5720-6fdf-4159-a283-c26d883a64cf"
 					(reference "KS601")
@@ -2604,7 +2808,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "524e775a-778e-4691-bc86-76b66a761807")
-		(property "Reference" "#PWR0106"
+		(property "Reference" "#PWR0109"
 			(at 196.85 82.55 0)
 			(hide yes)
 			(show_name no)
@@ -2696,6 +2900,40 @@
 					(unit 1)
 				)
 			)
+			(project "SkySense-bank"
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-000060931a6c"
+					(reference "#PWR0109")
+					(unit 1)
+				)
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-00006095a3e7"
+					(reference "#PWR0109")
+					(unit 1)
+				)
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-00006095a595"
+					(reference "#PWR0109")
+					(unit 1)
+				)
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-00006095a623"
+					(reference "#PWR0109")
+					(unit 1)
+				)
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-00006097747f"
+					(reference "#PWR0109")
+					(unit 1)
+				)
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-00006097748e"
+					(reference "#PWR0109")
+					(unit 1)
+				)
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-000060ad1e09"
+					(reference "#PWR0109")
+					(unit 1)
+				)
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-000060b0a1cf"
+					(reference "#PWR0109")
+					(unit 1)
+				)
+			)
 		)
 	)
 	(symbol
@@ -2710,7 +2948,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "87e85105-c70e-4bf6-ac1a-8e3c6221702d")
-		(property "Reference" "J2"
+		(property "Reference" "J3"
 			(at 207.01 97.7899 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2814,6 +3052,40 @@
 					(unit 1)
 				)
 			)
+			(project "SkySense-bank"
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-000060931a6c"
+					(reference "J3")
+					(unit 1)
+				)
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-00006095a3e7"
+					(reference "J3")
+					(unit 1)
+				)
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-00006095a595"
+					(reference "J3")
+					(unit 1)
+				)
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-00006095a623"
+					(reference "J3")
+					(unit 1)
+				)
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-00006097747f"
+					(reference "J3")
+					(unit 1)
+				)
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-00006097748e"
+					(reference "J3")
+					(unit 1)
+				)
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-000060ad1e09"
+					(reference "J3")
+					(unit 1)
+				)
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-000060b0a1cf"
+					(reference "J3")
+					(unit 1)
+				)
+			)
 		)
 	)
 	(symbol
@@ -2827,7 +3099,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "9ba539d9-7fcd-4f29-aa01-823902cf1649")
-		(property "Reference" "#PWR0105"
+		(property "Reference" "#PWR0108"
 			(at 196.85 53.34 0)
 			(hide yes)
 			(show_name no)
@@ -2919,6 +3191,40 @@
 					(unit 1)
 				)
 			)
+			(project "SkySense-bank"
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-000060931a6c"
+					(reference "#PWR0108")
+					(unit 1)
+				)
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-00006095a3e7"
+					(reference "#PWR0108")
+					(unit 1)
+				)
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-00006095a595"
+					(reference "#PWR0108")
+					(unit 1)
+				)
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-00006095a623"
+					(reference "#PWR0108")
+					(unit 1)
+				)
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-00006097747f"
+					(reference "#PWR0108")
+					(unit 1)
+				)
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-00006097748e"
+					(reference "#PWR0108")
+					(unit 1)
+				)
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-000060ad1e09"
+					(reference "#PWR0108")
+					(unit 1)
+				)
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-000060b0a1cf"
+					(reference "#PWR0108")
+					(unit 1)
+				)
+			)
 		)
 	)
 	(symbol
@@ -2933,7 +3239,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "b326154e-4463-4b42-937a-e25e238af7b9")
-		(property "Reference" "D102"
+		(property "Reference" "D103"
 			(at 198.8694 56.9935 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3051,6 +3357,40 @@
 				)
 				(path "/6a49483a-5c41-431e-a4c7-be588d8f1eb1/582a3a1f-05dc-4bc2-b860-be1af180b57f/00000000-0000-0000-0000-000060b0a1cf"
 					(reference "D104")
+					(unit 1)
+				)
+			)
+			(project "SkySense-bank"
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-000060931a6c"
+					(reference "D103")
+					(unit 1)
+				)
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-00006095a3e7"
+					(reference "D103")
+					(unit 1)
+				)
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-00006095a595"
+					(reference "D103")
+					(unit 1)
+				)
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-00006095a623"
+					(reference "D103")
+					(unit 1)
+				)
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-00006097747f"
+					(reference "D103")
+					(unit 1)
+				)
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-00006097748e"
+					(reference "D103")
+					(unit 1)
+				)
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-000060ad1e09"
+					(reference "D103")
+					(unit 1)
+				)
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-000060b0a1cf"
+					(reference "D103")
 					(unit 1)
 				)
 			)

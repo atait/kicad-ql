@@ -1471,7 +1471,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-00006098a34f")
-		(property "Reference" "#PWR03"
+		(property "Reference" "#PWR0501"
 			(at 45.72 43.18 0)
 			(hide yes)
 			(show_name no)
@@ -1539,30 +1539,6 @@
 					(reference "#PWR0501")
 					(unit 1)
 				)
-				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-000060931a6c"
-					(reference "#PWR?")
-					(unit 1)
-				)
-				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-00006095a3e7"
-					(reference "#PWR?")
-					(unit 1)
-				)
-				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-00006095a595"
-					(reference "#PWR?")
-					(unit 1)
-				)
-				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-00006095a623"
-					(reference "#PWR?")
-					(unit 1)
-				)
-				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-00006097747f"
-					(reference "#PWR?")
-					(unit 1)
-				)
-				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-00006097748e"
-					(reference "#PWR?")
-					(unit 1)
-				)
 			)
 		)
 	)
@@ -1577,7 +1553,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-00006098f6e6")
-		(property "Reference" "C1"
+		(property "Reference" "C501"
 			(at 59.4868 43.2816 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1674,7 +1650,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-000060a086e8")
-		(property "Reference" "#PWR05"
+		(property "Reference" "#PWR0502"
 			(at 45.72 55.88 0)
 			(hide yes)
 			(show_name no)
@@ -1742,30 +1718,6 @@
 					(reference "#PWR0502")
 					(unit 1)
 				)
-				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-000060931a6c"
-					(reference "#PWR?")
-					(unit 1)
-				)
-				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-00006095a3e7"
-					(reference "#PWR?")
-					(unit 1)
-				)
-				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-00006095a595"
-					(reference "#PWR?")
-					(unit 1)
-				)
-				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-00006095a623"
-					(reference "#PWR?")
-					(unit 1)
-				)
-				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-00006097747f"
-					(reference "#PWR?")
-					(unit 1)
-				)
-				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-00006097748e"
-					(reference "#PWR?")
-					(unit 1)
-				)
 			)
 		)
 	)
@@ -1780,7 +1732,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-000060a1d89e")
-		(property "Reference" "#PWR06"
+		(property "Reference" "#PWR0503"
 			(at 57.15 55.88 0)
 			(hide yes)
 			(show_name no)
@@ -1862,7 +1814,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-000060a1f23c")
-		(property "Reference" "FB2"
+		(property "Reference" "FB502"
 			(at 52.07 43.5102 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1957,7 +1909,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-000060a62d5d")
-		(property "Reference" "FB1"
+		(property "Reference" "FB501"
 			(at 50.8 34.6202 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2052,7 +2004,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-000060abc871")
-		(property "Reference" "C2"
+		(property "Reference" "C502"
 			(at 67.1068 43.2816 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2986,4 +2938,10 @@
 			)
 		)
 	)
+	(sheet_instances
+		(path "/"
+			(page "1")
+		)
+	)
+	(embedded_fonts no)
 )
