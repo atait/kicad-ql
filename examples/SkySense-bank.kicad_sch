@@ -1,0 +1,2989 @@
+(kicad_sch
+	(version 20260306)
+	(generator "eeschema")
+	(generator_version "10.0")
+	(uuid "a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77")
+	(paper "A4")
+	(lib_symbols
+		(symbol "Device:C_Small"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0.254)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "C"
+				(at 0.254 1.778 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Value" "C_Small"
+				(at 0.254 -2.032 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "Unpolarized capacitor, small symbol"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "capacitor cap"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_fp_filters" "C_*"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "C_Small_0_1"
+				(polyline
+					(pts
+						(xy -1.524 0.508) (xy 1.524 0.508)
+					)
+					(stroke
+						(width 0.3048)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -1.524 -0.508) (xy 1.524 -0.508)
+					)
+					(stroke
+						(width 0.3302)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "C_Small_1_1"
+				(pin passive line
+					(at 0 2.54 270)
+					(length 2.032)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 0 -2.54 90)
+					(length 2.032)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "Device:FerriteBead_Small"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "FB"
+				(at 1.905 1.27 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Value" "FerriteBead_Small"
+				(at 1.905 -1.27 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Footprint" ""
+				(at -1.778 0 90)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "Ferrite bead, small symbol"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "L ferrite bead inductor filter"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_fp_filters" "Inductor_* L_* *Ferrite*"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "FerriteBead_Small_0_1"
+				(polyline
+					(pts
+						(xy -1.8288 0.2794) (xy -1.1176 1.4986) (xy 1.8288 -0.2032) (xy 1.1176 -1.4224) (xy -1.8288 0.2794)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 0.889) (xy 0 1.2954)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 -1.27) (xy 0 -0.7874)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "FerriteBead_Small_1_1"
+				(pin passive line
+					(at 0 2.54 270)
+					(length 1.27)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 0 -2.54 90)
+					(length 1.27)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "power:+5V"
+			(power global)
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "#PWR"
+				(at 0 -3.81 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "+5V"
+				(at 0 3.556 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "Power symbol creates a global label with name \"+5V\""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "global power"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "+5V_0_1"
+				(polyline
+					(pts
+						(xy -0.762 1.27) (xy 0 2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 2.54) (xy 0.762 1.27)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 0) (xy 0 2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "+5V_1_1"
+				(pin power_in line
+					(at 0 0 90)
+					(length 0)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "power:GND"
+			(power global)
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "#PWR"
+				(at 0 -6.35 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "GND"
+				(at 0 -3.81 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "global power"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "GND_0_1"
+				(polyline
+					(pts
+						(xy 0 0) (xy 0 -1.27) (xy 1.27 -1.27) (xy 0 -2.54) (xy -1.27 -1.27) (xy 0 -1.27)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "GND_1_1"
+				(pin power_in line
+					(at 0 0 270)
+					(length 0)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "power:GND1"
+			(power global)
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "#PWR"
+				(at 0 -6.35 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "GND1"
+				(at 0 -3.81 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "Power symbol creates a global label with name \"GND1\" , ground"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "global power"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "GND1_0_1"
+				(polyline
+					(pts
+						(xy 0 0) (xy 0 -1.27) (xy 1.27 -1.27) (xy 0 -2.54) (xy -1.27 -1.27) (xy 0 -1.27)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "GND1_1_1"
+				(pin power_in line
+					(at 0 0 270)
+					(length 0)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+	)
+	(text "For most things\nDecrease these to increase sensitivity\nC21895(2p)\nC1634(10p)\nC1644(15p)\n\nFor AT42Q1011\nIncrease Cs to increase sensitivity\nC55395(3.3n)\nC76710(10n)\nC354353(22n)"
+		(exclude_from_sim no)
+		(at 24.13 96.52 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "12f50c77-32e0-48b3-b072-c2b074d1709c")
+	)
+	(junction
+		(at 57.15 40.64)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "0233d8d1-25fe-4fd1-9e39-44806d735427")
+	)
+	(junction
+		(at 85.09 92.71)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "3b16c4a0-231e-41e9-9259-1f4fb23ec97e")
+	)
+	(junction
+		(at 64.77 40.64)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "d71cd57b-eb44-4cae-a724-8bfd7573d902")
+	)
+	(junction
+		(at 57.15 49.53)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "f48ae0a4-32fb-43e6-a59a-48edd01009c7")
+	)
+	(bus_entry
+		(at 121.92 76.2)
+		(size 2.54 -2.54)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3c2533ce-91a5-44fe-b385-482aab033efd")
+	)
+	(bus_entry
+		(at 152.4 76.2)
+		(size 2.54 -2.54)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "60bbc271-f7fc-441d-a500-cd05216ab302")
+	)
+	(bus_entry
+		(at 152.4 130.81)
+		(size 2.54 -2.54)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "897b76a7-6f6d-45b4-89c9-aae4980ba884")
+	)
+	(bus_entry
+		(at 91.44 76.2)
+		(size 2.54 -2.54)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "afec73fe-77d0-4ed9-872e-a941022a8c02")
+	)
+	(bus_entry
+		(at 121.92 130.81)
+		(size 2.54 -2.54)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b8c73f85-e9c6-4a96-b283-1b3e6e55c5ee")
+	)
+	(bus_entry
+		(at 91.44 130.81)
+		(size 2.54 -2.54)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d2eb130f-e7d0-4163-9201-a9dfc4b625ba")
+	)
+	(bus_entry
+		(at 182.88 76.2)
+		(size 2.54 -2.54)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d87e2c07-ca3d-4e23-8a9c-16bf5489f00e")
+	)
+	(bus_entry
+		(at 182.88 130.81)
+		(size 2.54 -2.54)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ec974e0a-de95-490c-b452-74addd03cca3")
+	)
+	(wire
+		(pts
+			(xy 179.07 110.49) (xy 187.96 110.49)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "15646c11-0cf9-4167-b184-223dc7e12caf")
+	)
+	(wire
+		(pts
+			(xy 93.98 119.38) (xy 93.98 128.27)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "21ea6628-dbed-407f-86b0-aa7d5f5316e0")
+	)
+	(wire
+		(pts
+			(xy 148.59 110.49) (xy 157.48 110.49)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "36af93f8-1336-4351-a79f-cd58e476fedd")
+	)
+	(wire
+		(pts
+			(xy 118.11 55.88) (xy 127 55.88)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "383014ca-28de-4257-a61b-512c31423f2a")
+	)
+	(wire
+		(pts
+			(xy 64.77 49.53) (xy 57.15 49.53)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "40fe1411-061a-4f16-8241-b4ffce925863")
+	)
+	(wire
+		(pts
+			(xy 127 119.38) (xy 124.46 119.38)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "451ea6cf-c675-4abf-aad3-918b1a6a7a33")
+	)
+	(wire
+		(pts
+			(xy 209.55 55.88) (xy 213.36 55.88)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "52ad3302-c607-4b98-8e45-539a49f58d02")
+	)
+	(wire
+		(pts
+			(xy 179.07 55.88) (xy 187.96 55.88)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "530eefad-32fc-4979-8260-305392a45c20")
+	)
+	(wire
+		(pts
+			(xy 185.42 64.77) (xy 185.42 73.66)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "56b9b8cb-c17f-4a1d-a879-68c2402e4b2b")
+	)
+	(wire
+		(pts
+			(xy 148.59 55.88) (xy 157.48 55.88)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5b735512-4760-485b-a4f5-e4711469960e")
+	)
+	(wire
+		(pts
+			(xy 213.36 55.88) (xy 213.36 80.01)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5ce878e4-5d74-4e3c-9614-5fafb995e6ad")
+	)
+	(wire
+		(pts
+			(xy 92.71 78.74) (xy 212.09 78.74)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "62620500-25e2-4d13-b255-a71be678f7da")
+	)
+	(bus
+		(pts
+			(xy 85.09 130.81) (xy 91.44 130.81)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "64e6b486-ffcd-4eda-b118-81929e411da4")
+	)
+	(wire
+		(pts
+			(xy 154.94 64.77) (xy 154.94 73.66)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6802a73f-b979-4c5f-9161-2a0812dd8aee")
+	)
+	(wire
+		(pts
+			(xy 96.52 113.03) (xy 92.71 113.03)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6bde0889-f02d-4c65-94ba-8ca9407c8286")
+	)
+	(wire
+		(pts
+			(xy 93.98 110.49) (xy 96.52 110.49)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6dd14081-84df-4f80-85e7-3a513585c5b6")
+	)
+	(wire
+		(pts
+			(xy 118.11 110.49) (xy 127 110.49)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6fe6a415-39dd-4346-8f73-7af9181d5e02")
+	)
+	(wire
+		(pts
+			(xy 209.55 110.49) (xy 218.44 110.49)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "70a913f1-c106-4870-aa3d-c6e7bcb3fbd4")
+	)
+	(wire
+		(pts
+			(xy 64.77 46.99) (xy 64.77 49.53)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "75003ee5-d58d-4df1-a510-1ef9539a34aa")
+	)
+	(wire
+		(pts
+			(xy 87.63 55.88) (xy 96.52 55.88)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "76eab48b-0817-4ed9-9e01-a09ae962069d")
+	)
+	(wire
+		(pts
+			(xy 57.15 40.64) (xy 53.34 40.64)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7b05818d-e666-4a85-a721-b7cd7e9be842")
+	)
+	(wire
+		(pts
+			(xy 54.61 49.53) (xy 57.15 49.53)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7f221513-4fd6-49a6-9670-2b9392cb78c9")
+	)
+	(wire
+		(pts
+			(xy 213.36 80.01) (xy 93.98 80.01)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "80caf68c-9654-4eba-a24f-3f3353574410")
+	)
+	(wire
+		(pts
+			(xy 45.72 40.64) (xy 48.26 40.64)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8265ce2f-989f-4ceb-b679-5aa3d7b0f717")
+	)
+	(wire
+		(pts
+			(xy 124.46 119.38) (xy 124.46 128.27)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "832f6764-e40d-475f-80fb-a770a3c3bce2")
+	)
+	(wire
+		(pts
+			(xy 157.48 64.77) (xy 154.94 64.77)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8c82f9df-4667-4d38-8ae1-d5e7d6113b7b")
+	)
+	(bus
+		(pts
+			(xy 85.09 92.71) (xy 85.09 130.81)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9306cac7-5e33-4a7c-9414-d2ccc92da641")
+	)
+	(wire
+		(pts
+			(xy 93.98 80.01) (xy 93.98 110.49)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "970fc8d8-4a9c-4cc0-99be-1b381fae8736")
+	)
+	(wire
+		(pts
+			(xy 93.98 64.77) (xy 93.98 73.66)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9cde9b9a-94a1-471b-b0ba-e40d47150f98")
+	)
+	(wire
+		(pts
+			(xy 127 64.77) (xy 124.46 64.77)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9d355ee5-3e49-4c95-94fd-1a6c618db57a")
+	)
+	(bus
+		(pts
+			(xy 67.31 92.71) (xy 85.09 92.71)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a0cf6d38-a2f2-4848-b3dc-bf16058010b0")
+	)
+	(wire
+		(pts
+			(xy 185.42 119.38) (xy 185.42 128.27)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a3e08831-a898-42de-b422-a6291d25c8ad")
+	)
+	(wire
+		(pts
+			(xy 57.15 40.64) (xy 64.77 40.64)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b00321ea-3043-4918-869a-1a82c4658181")
+	)
+	(wire
+		(pts
+			(xy 187.96 64.77) (xy 185.42 64.77)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b1f5211e-3272-423b-ae6f-9a2460aa9a33")
+	)
+	(wire
+		(pts
+			(xy 92.71 113.03) (xy 92.71 78.74)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b62c7bbe-ab03-44a8-8fbb-7e9b1493276f")
+	)
+	(wire
+		(pts
+			(xy 154.94 119.38) (xy 154.94 128.27)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ba20af45-2eee-4e8f-855f-d3c63f8fb89b")
+	)
+	(wire
+		(pts
+			(xy 96.52 119.38) (xy 93.98 119.38)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "be3c8702-9326-4777-ae64-21dbbf376168")
+	)
+	(bus
+		(pts
+			(xy 85.09 76.2) (xy 85.09 92.71)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "bf9551a3-ffaa-4b09-ab5a-a934cb1833fb")
+	)
+	(wire
+		(pts
+			(xy 49.53 49.53) (xy 45.72 49.53)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c6aaf0ec-db0b-437f-8345-3cf17d94522d")
+	)
+	(wire
+		(pts
+			(xy 45.72 39.37) (xy 45.72 40.64)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d012044e-0c53-4808-b1fa-3537ada654db")
+	)
+	(wire
+		(pts
+			(xy 212.09 78.74) (xy 212.09 58.42)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d39060aa-c3e0-408d-bb76-fd63c99f458c")
+	)
+	(wire
+		(pts
+			(xy 57.15 46.99) (xy 57.15 49.53)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d56546b9-3f39-4e2b-a197-96387ad1056f")
+	)
+	(wire
+		(pts
+			(xy 187.96 119.38) (xy 185.42 119.38)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "dd4ff045-f899-41a1-b746-810fa3803afd")
+	)
+	(wire
+		(pts
+			(xy 64.77 40.64) (xy 64.77 41.91)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e205564b-7111-40db-96a6-ccc6565262c0")
+	)
+	(bus
+		(pts
+			(xy 91.44 130.81) (xy 182.88 130.81)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e29ba321-93db-4aa7-8297-99cc98580481")
+	)
+	(bus
+		(pts
+			(xy 85.09 76.2) (xy 182.88 76.2)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e6050dd8-2cc2-47ca-ab5f-4665cb623cac")
+	)
+	(wire
+		(pts
+			(xy 64.77 40.64) (xy 72.39 40.64)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ee7d1701-8100-4ecc-80ba-ac571e6bf873")
+	)
+	(wire
+		(pts
+			(xy 157.48 119.38) (xy 154.94 119.38)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f4b7ec6a-0fec-43d2-a8f2-f321b7a3b810")
+	)
+	(wire
+		(pts
+			(xy 124.46 64.77) (xy 124.46 73.66)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f7aed212-defe-4b6a-94ca-580acb0bfe9c")
+	)
+	(wire
+		(pts
+			(xy 96.52 64.77) (xy 93.98 64.77)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f7d0f124-0a7e-49d2-a66d-c5b72560016d")
+	)
+	(wire
+		(pts
+			(xy 57.15 40.64) (xy 57.15 41.91)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ff5ee158-5887-4347-96ba-1c5b0a50a4a4")
+	)
+	(label "OUT3"
+		(at 154.94 72.39 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "099ec5f2-5276-4265-ae58-a5913042372e")
+	)
+	(label "OUT6"
+		(at 124.46 127 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "2211bac2-7387-4ec1-8192-62c8ee2e6cce")
+	)
+	(label "OUT[1..8]"
+		(at 72.39 92.71 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "2834ed0b-860a-41f7-bbaa-55044e14272d")
+	)
+	(label "OUT5"
+		(at 93.98 127 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "57b76a02-97cc-410f-8e9f-6105316afd84")
+	)
+	(label "OUT2"
+		(at 124.46 72.39 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "87861815-3d02-466d-8c79-0de500cd1824")
+	)
+	(label "OUT7"
+		(at 154.94 127 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "93299b3f-7282-4b30-aa37-611049fcf0ce")
+	)
+	(label "OUT1"
+		(at 93.98 72.39 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "b57f5853-3260-48f5-98a8-a2522f00a8c5")
+	)
+	(label "OUT4"
+		(at 185.42 72.39 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "d7f7e441-705c-4f32-b2a2-bc3199ab4c9f")
+	)
+	(label "OUT8"
+		(at 185.42 127 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "ef5ada34-55ad-47b8-a72f-fec9df875000")
+	)
+	(global_label "SENSOR_VCC"
+		(shape input)
+		(at 72.39 40.64 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "4b527a6f-b50d-429f-88a9-c6e73771d980")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 72.39 40.64 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+	)
+	(hierarchical_label "OUT[1..8]"
+		(shape output)
+		(at 67.31 92.71 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "0674b82e-9dd9-4a62-8469-cf4d20d296d4")
+	)
+	(hierarchical_label "LEDA"
+		(shape input)
+		(at 87.63 55.88 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "570b9b13-a981-47d6-bb6b-a8cb3f6216c8")
+	)
+	(hierarchical_label "LEDZ"
+		(shape output)
+		(at 218.44 110.49 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "e24abb3b-0801-4fa1-8ba4-46ebbd0e81cb")
+	)
+	(symbol
+		(lib_id "power:+5V")
+		(at 45.72 39.37 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "00000000-0000-0000-0000-00006098a34f")
+		(property "Reference" "#PWR03"
+			(at 45.72 43.18 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "+5V"
+			(at 46.101 34.9758 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 45.72 39.37 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 45.72 39.37 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 45.72 39.37 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "eb07a145-a57b-4f4e-b998-3eca911aeaea")
+		)
+		(instances
+			(project "LemonCard"
+				(path "/6a49483a-5c41-431e-a4c7-be588d8f1eb1/582a3a1f-05dc-4bc2-b860-be1af180b57f"
+					(reference "#PWR03")
+					(unit 1)
+				)
+			)
+			(project "SkySense-bank"
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77"
+					(reference "#PWR0501")
+					(unit 1)
+				)
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-000060931a6c"
+					(reference "#PWR?")
+					(unit 1)
+				)
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-00006095a3e7"
+					(reference "#PWR?")
+					(unit 1)
+				)
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-00006095a595"
+					(reference "#PWR?")
+					(unit 1)
+				)
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-00006095a623"
+					(reference "#PWR?")
+					(unit 1)
+				)
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-00006097747f"
+					(reference "#PWR?")
+					(unit 1)
+				)
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-00006097748e"
+					(reference "#PWR?")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C_Small")
+		(at 57.15 44.45 180)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "00000000-0000-0000-0000-00006098f6e6")
+		(property "Reference" "C1"
+			(at 59.4868 43.2816 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "100nF"
+			(at 59.4868 45.593 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
+			(at 57.15 44.45 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 57.15 44.45 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 57.15 44.45 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C1525"
+			(at 57.15 44.45 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "2"
+			(uuid "46170eba-49a4-409c-babe-223477ffabd4")
+		)
+		(pin "1"
+			(uuid "1ee4887c-97d9-406d-b158-cf69cbc4f63a")
+		)
+		(instances
+			(project "LemonCard"
+				(path "/6a49483a-5c41-431e-a4c7-be588d8f1eb1/582a3a1f-05dc-4bc2-b860-be1af180b57f"
+					(reference "C1")
+					(unit 1)
+				)
+			)
+			(project "SkySense-bank"
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77"
+					(reference "C501")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 45.72 49.53 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "00000000-0000-0000-0000-000060a086e8")
+		(property "Reference" "#PWR05"
+			(at 45.72 55.88 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 45.847 53.9242 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 45.72 49.53 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 45.72 49.53 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 45.72 49.53 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "2afc4829-6193-4942-8f5a-7cf3387c096c")
+		)
+		(instances
+			(project "LemonCard"
+				(path "/6a49483a-5c41-431e-a4c7-be588d8f1eb1/582a3a1f-05dc-4bc2-b860-be1af180b57f"
+					(reference "#PWR05")
+					(unit 1)
+				)
+			)
+			(project "SkySense-bank"
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77"
+					(reference "#PWR0502")
+					(unit 1)
+				)
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-000060931a6c"
+					(reference "#PWR?")
+					(unit 1)
+				)
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-00006095a3e7"
+					(reference "#PWR?")
+					(unit 1)
+				)
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-00006095a595"
+					(reference "#PWR?")
+					(unit 1)
+				)
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-00006095a623"
+					(reference "#PWR?")
+					(unit 1)
+				)
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-00006097747f"
+					(reference "#PWR?")
+					(unit 1)
+				)
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77/00000000-0000-0000-0000-00006097748e"
+					(reference "#PWR?")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND1")
+		(at 57.15 49.53 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "00000000-0000-0000-0000-000060a1d89e")
+		(property "Reference" "#PWR06"
+			(at 57.15 55.88 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND1"
+			(at 57.277 53.9242 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 57.15 49.53 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 57.15 49.53 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 57.15 49.53 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "308e3dcc-bfbf-43b3-91fa-a1208dd28c5e")
+		)
+		(instances
+			(project "LemonCard"
+				(path "/6a49483a-5c41-431e-a4c7-be588d8f1eb1/582a3a1f-05dc-4bc2-b860-be1af180b57f"
+					(reference "#PWR06")
+					(unit 1)
+				)
+			)
+			(project "SkySense-bank"
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77"
+					(reference "#PWR0503")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:FerriteBead_Small")
+		(at 52.07 49.53 270)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "00000000-0000-0000-0000-000060a1f23c")
+		(property "Reference" "FB2"
+			(at 52.07 43.5102 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "BLM18PG221SN1D"
+			(at 52.07 45.8216 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Inductor_SMD:L_0603_1608Metric"
+			(at 52.07 47.752 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 52.07 49.53 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 52.07 49.53 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C80165"
+			(at 52.07 49.53 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "2"
+			(uuid "bb6fa040-d171-41c0-a450-8203d87401ef")
+		)
+		(pin "1"
+			(uuid "070143cf-0dc1-4362-b558-3b199d032c13")
+		)
+		(instances
+			(project "LemonCard"
+				(path "/6a49483a-5c41-431e-a4c7-be588d8f1eb1/582a3a1f-05dc-4bc2-b860-be1af180b57f"
+					(reference "FB2")
+					(unit 1)
+				)
+			)
+			(project "SkySense-bank"
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77"
+					(reference "FB502")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:FerriteBead_Small")
+		(at 50.8 40.64 270)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "00000000-0000-0000-0000-000060a62d5d")
+		(property "Reference" "FB1"
+			(at 50.8 34.6202 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "BLM18PG221SN1D"
+			(at 50.8 36.9316 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Inductor_SMD:L_0603_1608Metric"
+			(at 50.8 38.862 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 50.8 40.64 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 50.8 40.64 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C80165"
+			(at 50.8 40.64 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "6a206b08-f29e-4f11-93cf-e72a274ea075")
+		)
+		(pin "2"
+			(uuid "943e33b4-cc59-4570-8033-0d1395ad5bbc")
+		)
+		(instances
+			(project "LemonCard"
+				(path "/6a49483a-5c41-431e-a4c7-be588d8f1eb1/582a3a1f-05dc-4bc2-b860-be1af180b57f"
+					(reference "FB1")
+					(unit 1)
+				)
+			)
+			(project "SkySense-bank"
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77"
+					(reference "FB501")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C_Small")
+		(at 64.77 44.45 180)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "00000000-0000-0000-0000-000060abc871")
+		(property "Reference" "C2"
+			(at 67.1068 43.2816 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "10uF"
+			(at 67.1068 45.593 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
+			(at 64.77 44.45 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 64.77 44.45 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 64.77 44.45 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C19702"
+			(at 64.77 44.45 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "f53a2427-b955-4b02-bf8d-91f231f5d4ce")
+		)
+		(pin "2"
+			(uuid "40800e0d-b8af-4084-bbd1-1c7817dc02c8")
+		)
+		(instances
+			(project "LemonCard"
+				(path "/6a49483a-5c41-431e-a4c7-be588d8f1eb1/582a3a1f-05dc-4bc2-b860-be1af180b57f"
+					(reference "C2")
+					(unit 1)
+				)
+			)
+			(project "SkySense-bank"
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77"
+					(reference "C502")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(sheet
+		(at 127 50.8)
+		(size 21.59 16.51)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0)
+		)
+		(uuid "00000000-0000-0000-0000-000060931a6c")
+		(property "Sheetname" "ssen2"
+			(at 127 50.0884 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "SkyKey-AT42QT1011.kicad_sch"
+			(at 127 67.8946 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(pin "KEY_OUT" output
+			(at 127 64.77 180)
+			(uuid "7d82d2bc-d018-467d-b62d-0eb410d4a75a")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "DI" input
+			(at 127 55.88 180)
+			(uuid "f3e651d3-7c9d-4527-8312-d0bbe558c6e1")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "DO" output
+			(at 148.59 55.88 0)
+			(uuid "7f304b17-4ef4-47e4-8462-51093b6d9ff4")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "BI" input
+			(at 127 58.42 180)
+			(uuid "f7ffffcd-e8f2-4578-9443-e1d462ad40fe")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "BO" output
+			(at 148.59 58.42 0)
+			(uuid "27f7d2e5-bb50-42f8-a286-6f02d960ec78")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(instances
+			(project "SkySense-bank"
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77"
+					(page "4")
+				)
+			)
+			(project ""
+				(path "/582a3a1f-05dc-4bc2-b860-be1af180b57f"
+					(page "#")
+				)
+			)
+			(project "LemonCard"
+				(path "/6a49483a-5c41-431e-a4c7-be588d8f1eb1/582a3a1f-05dc-4bc2-b860-be1af180b57f"
+					(page "4")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 157.48 50.8)
+		(size 21.59 16.51)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0)
+		)
+		(uuid "00000000-0000-0000-0000-00006095a3e7")
+		(property "Sheetname" "ssen3"
+			(at 157.48 50.0884 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "SkyKey-AT42QT1011.kicad_sch"
+			(at 157.48 67.8946 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(pin "KEY_OUT" output
+			(at 157.48 64.77 180)
+			(uuid "7405fd19-a42e-408e-93d4-d240b2c2ade6")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "DI" input
+			(at 157.48 55.88 180)
+			(uuid "708f6e6b-2de4-433e-a5ff-96596018dec3")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "DO" output
+			(at 179.07 55.88 0)
+			(uuid "17fe63a8-2806-462f-a07c-7fb89c454173")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "BI" input
+			(at 157.48 58.42 180)
+			(uuid "3e4c8eba-20f8-45ec-b490-0aceede9351c")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "BO" output
+			(at 179.07 58.42 0)
+			(uuid "e63fab82-d03c-4ab7-bbe3-60a4df1f9e17")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(instances
+			(project "SkySense-bank"
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77"
+					(page "6")
+				)
+			)
+			(project ""
+				(path "/582a3a1f-05dc-4bc2-b860-be1af180b57f"
+					(page "#")
+				)
+			)
+			(project "LemonCard"
+				(path "/6a49483a-5c41-431e-a4c7-be588d8f1eb1/582a3a1f-05dc-4bc2-b860-be1af180b57f"
+					(page "6")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 187.96 50.8)
+		(size 21.59 16.51)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0)
+		)
+		(uuid "00000000-0000-0000-0000-00006095a595")
+		(property "Sheetname" "ssen4"
+			(at 187.96 50.0884 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "SkyKey-AT42QT1011.kicad_sch"
+			(at 187.96 67.8946 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(pin "KEY_OUT" output
+			(at 187.96 64.77 180)
+			(uuid "b9e131c4-9c37-4b25-9bcd-56e976ecbced")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "DI" input
+			(at 187.96 55.88 180)
+			(uuid "93e045c7-40e3-426f-9bff-7de6c3eeb530")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "DO" output
+			(at 209.55 55.88 0)
+			(uuid "ef718f3f-8a28-498f-a036-b50ff22e2bae")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "BI" input
+			(at 187.96 58.42 180)
+			(uuid "3805aabb-6cb5-4b99-848d-18a397e993c1")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "BO" output
+			(at 209.55 58.42 0)
+			(uuid "49a2eeff-385b-4f1d-8665-072d38030406")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(instances
+			(project "SkySense-bank"
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77"
+					(page "8")
+				)
+			)
+			(project ""
+				(path "/582a3a1f-05dc-4bc2-b860-be1af180b57f"
+					(page "#")
+				)
+			)
+			(project "LemonCard"
+				(path "/6a49483a-5c41-431e-a4c7-be588d8f1eb1/582a3a1f-05dc-4bc2-b860-be1af180b57f"
+					(page "8")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 96.52 50.8)
+		(size 21.59 16.51)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0)
+		)
+		(uuid "00000000-0000-0000-0000-00006095a623")
+		(property "Sheetname" "ssen1"
+			(at 96.52 50.0884 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "SkyKey-AT42QT1011.kicad_sch"
+			(at 96.52 67.8946 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(pin "KEY_OUT" output
+			(at 96.52 64.77 180)
+			(uuid "681a62af-3b5f-42e7-8510-25fce42a1219")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "DI" input
+			(at 96.52 55.88 180)
+			(uuid "109e9d80-91ea-4199-8fcf-cab003a1d313")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "DO" output
+			(at 118.11 55.88 0)
+			(uuid "f67fd349-5617-4122-8308-3b9d50ffc0e5")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "BI" input
+			(at 96.52 58.42 180)
+			(uuid "7b400612-aaac-4ae8-9b90-0e934604d978")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "BO" output
+			(at 118.11 58.42 0)
+			(uuid "d24bdf74-e3f2-46ef-9f06-093a0ee6131b")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(instances
+			(project "SkySense-bank"
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77"
+					(page "2")
+				)
+			)
+			(project ""
+				(path "/582a3a1f-05dc-4bc2-b860-be1af180b57f"
+					(page "#")
+				)
+			)
+			(project "LemonCard"
+				(path "/6a49483a-5c41-431e-a4c7-be588d8f1eb1/582a3a1f-05dc-4bc2-b860-be1af180b57f"
+					(page "10")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 187.96 105.41)
+		(size 21.59 16.51)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0)
+		)
+		(uuid "00000000-0000-0000-0000-00006097747f")
+		(property "Sheetname" "ssen8"
+			(at 187.96 104.6984 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "SkyKey-AT42QT1011.kicad_sch"
+			(at 187.96 122.5046 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(pin "KEY_OUT" output
+			(at 187.96 119.38 180)
+			(uuid "3270ce52-d53b-45f9-9c0b-02ec498b91de")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "DI" input
+			(at 187.96 110.49 180)
+			(uuid "ac7e194a-9c18-4a8b-8b3c-a3c5e8072a72")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "DO" output
+			(at 209.55 110.49 0)
+			(uuid "aaf974c6-dcc3-4cce-8ec6-b337d1ffec92")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "BI" input
+			(at 187.96 113.03 180)
+			(uuid "9d9b028b-a4d8-4bc6-8410-2dbc7a43af22")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "BO" output
+			(at 209.55 113.03 0)
+			(uuid "b4cf51f8-74c4-4e0e-b73a-14760c43d056")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(instances
+			(project "SkySense-bank"
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77"
+					(page "9")
+				)
+			)
+			(project ""
+				(path "/582a3a1f-05dc-4bc2-b860-be1af180b57f"
+					(page "#")
+				)
+			)
+			(project "LemonCard"
+				(path "/6a49483a-5c41-431e-a4c7-be588d8f1eb1/582a3a1f-05dc-4bc2-b860-be1af180b57f"
+					(page "9")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 157.48 105.41)
+		(size 21.59 16.51)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0)
+		)
+		(uuid "00000000-0000-0000-0000-00006097748e")
+		(property "Sheetname" "ssen7"
+			(at 157.48 104.6984 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "SkyKey-AT42QT1011.kicad_sch"
+			(at 157.48 122.5046 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(pin "KEY_OUT" output
+			(at 157.48 119.38 180)
+			(uuid "5abbd618-d095-4571-af31-0dbfdf1710e4")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "DI" input
+			(at 157.48 110.49 180)
+			(uuid "a0cf8ae3-b253-4977-b875-7450ca0b95cb")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "DO" output
+			(at 179.07 110.49 0)
+			(uuid "f589f3ee-b622-43bc-b902-b757e47a6563")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "BI" input
+			(at 157.48 113.03 180)
+			(uuid "ec387231-4b41-4ac3-9bbc-ed53eb656152")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "BO" output
+			(at 179.07 113.03 0)
+			(uuid "f2f5e5d9-11d9-4c21-81b1-6f2f0b515ecc")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(instances
+			(project "SkySense-bank"
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77"
+					(page "7")
+				)
+			)
+			(project ""
+				(path "/582a3a1f-05dc-4bc2-b860-be1af180b57f"
+					(page "#")
+				)
+			)
+			(project "LemonCard"
+				(path "/6a49483a-5c41-431e-a4c7-be588d8f1eb1/582a3a1f-05dc-4bc2-b860-be1af180b57f"
+					(page "7")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 96.52 105.41)
+		(size 21.59 16.51)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0)
+		)
+		(uuid "00000000-0000-0000-0000-000060ad1e09")
+		(property "Sheetname" "ssen5"
+			(at 96.52 104.6984 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "SkyKey-AT42QT1011.kicad_sch"
+			(at 96.52 122.5046 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(pin "KEY_OUT" output
+			(at 96.52 119.38 180)
+			(uuid "d515e980-4864-4290-9921-f747f888281f")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "DI" input
+			(at 96.52 110.49 180)
+			(uuid "e7499d73-2601-46c0-a34e-ad1e29d470fe")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "DO" output
+			(at 118.11 110.49 0)
+			(uuid "d0b81ecc-ba92-4bbb-8d79-acc029806c4b")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "BI" input
+			(at 96.52 113.03 180)
+			(uuid "b0d5ef53-1154-4291-85a5-c606229da01a")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "BO" output
+			(at 118.11 113.03 0)
+			(uuid "b154b91d-6c89-4cbb-afaa-2a7f117228fc")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(instances
+			(project "SkySense-bank"
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77"
+					(page "3")
+				)
+			)
+			(project ""
+				(path "/582a3a1f-05dc-4bc2-b860-be1af180b57f"
+					(page "#")
+				)
+			)
+			(project "LemonCard"
+				(path "/6a49483a-5c41-431e-a4c7-be588d8f1eb1/582a3a1f-05dc-4bc2-b860-be1af180b57f"
+					(page "3")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 127 105.41)
+		(size 21.59 16.51)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0)
+		)
+		(uuid "00000000-0000-0000-0000-000060b0a1cf")
+		(property "Sheetname" "ssen6"
+			(at 127 104.6984 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "SkyKey-AT42QT1011.kicad_sch"
+			(at 127 122.5046 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(pin "KEY_OUT" output
+			(at 127 119.38 180)
+			(uuid "160c04bb-efe0-4f65-89d9-7cff048598f1")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "DI" input
+			(at 127 110.49 180)
+			(uuid "f549057a-5b1a-4327-b50d-45a0d9cc6913")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "DO" output
+			(at 148.59 110.49 0)
+			(uuid "ee875bd5-3e63-49a5-b1cc-e1ff98108ff9")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "BI" input
+			(at 127 113.03 180)
+			(uuid "a7b2c05a-425b-4377-911c-b22c5cb6ab00")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "BO" output
+			(at 148.59 113.03 0)
+			(uuid "511f6f93-6f1e-4b19-a817-a72f1ba3c504")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(instances
+			(project "SkySense-bank"
+				(path "/a2fa3ed2-fc05-4238-b3b8-c73f0b2cdc77"
+					(page "5")
+				)
+			)
+			(project ""
+				(path "/582a3a1f-05dc-4bc2-b860-be1af180b57f"
+					(page "#")
+				)
+			)
+			(project "LemonCard"
+				(path "/6a49483a-5c41-431e-a4c7-be588d8f1eb1/582a3a1f-05dc-4bc2-b860-be1af180b57f"
+					(page "5")
+				)
+			)
+		)
+	)
+)
