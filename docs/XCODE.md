@@ -67,7 +67,7 @@ is unavailable for your team, change the prefix to something unique.
 2. **Turn the extension on**, if needed: open System Settings ▸ General ▸ Login Items & Extensions,
    scroll to **Quick Look**, and make sure *KiCad PCB Preview* is enabled.
 3. **Try it:** select a board or schematic in `examples/` in Finder and press Space. Pinch to zoom,
-   scroll with two fingers to pan, and double-click (or double-tap with two fingers) to fit again. From
+   scroll with two fingers (or click and drag) to pan, and double-click (or double-tap with two fingers) to fit again. From
    Terminal:
 
    ```sh
@@ -157,7 +157,5 @@ When you want to see the change in Finder:
 
 ## Later: sharing it with others
 
-To give the app to other people without Gatekeeper warnings, you need a paid Apple Developer
-account. You sign the app with a *Developer ID* certificate and have it notarized: Product ▸
-Archive ▸ Distribute App ▸ **Direct Distribution**. Without a paid account, people can still build
-it themselves from source with these instructions.
+To make a notarized build that others can download, and a Homebrew cask, see
+[RELEASING.md](RELEASING.md).

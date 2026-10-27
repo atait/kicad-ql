@@ -2,7 +2,8 @@
 
 A macOS QuickLook preview extension for KiCad `.kicad_pcb` boards and `.kicad_sch` schematics. It
 parses the file directly and draws it with CoreGraphics, with no dependency on KiCad. The goal is a
-fit-to-window overview that can be zoomed (pinch, or a mouse wheel) and panned (two-finger scroll), not
+fit-to-window overview that can be zoomed (pinch, or a mouse wheel) and panned (two-finger scroll, or
+click and drag), not
 a faithful render. Boards also have the layer legend and the back-view toggle.
 
 ## Layout
@@ -51,7 +52,8 @@ a faithful render. Boards also have the layer legend and the back-view toggle.
 - `KiCadQL.xcodeproj`: host app `KiCadQL/` embeds `KiCadQLPreview/`, which links the local
   `KiCadPCBKit` package. The extension is **view-based** (`QLIsDataBasedPreview` = NO).
   `ZoomPanView` holds the zoom (1 = fitted, up to 40) and offset. It handles `magnify`, `scrollWheel`
-  (precise deltas pan, a mouse wheel zooms), and `smartMagnify` and double-click (back to fit), and
+  (precise deltas pan, a mouse wheel zooms), click-and-drag when zoomed in (pan, closed-hand cursor),
+  and `smartMagnify` and double-click (back to fit), and
   subclasses redraw vector content through `zoomTransform`. For a board, `PreviewViewController` hosts
   `BoardView` (a `ZoomPanView`), which redraws with `PCBRenderer` and cross-fades (0.07 s) on a
   focus or side change, and `LegendView`, an `NSVisualEffectView` with one toggle per layer (nearest the
@@ -71,6 +73,8 @@ a faithful render. Boards also have the layer legend and the back-view toggle.
 - `examples/`: real boards (KiCad 7 and KiCad 10 formats; `LSHM-2-Dsub-v2` has 4 copper layers) and
   schematics (KiCad 10; `SkySense-bank` has eight sub-sheets of `SkyKey-AT42QT1011`), used by the
   tests.
+- `images/`: README screenshots (the only PNGs that aren't gitignored).
+- `docs/RELEASING.md`: notarized releases and the Homebrew cask.
 - `brainstorm/`: original prototype. It is gitignored and should not be committed.
 
 ## Commands
