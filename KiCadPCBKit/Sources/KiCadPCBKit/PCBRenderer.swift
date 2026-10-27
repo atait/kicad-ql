@@ -42,8 +42,10 @@ public enum PCBRenderer {
     /// `fromBack` shows the board as seen from the bottom: mirrored left to right, with the back layers
     /// nearest the viewer. Colours keep their meaning (B.Cu is still blue), and back silkscreen text,
     /// which KiCad stores mirrored, reads the right way round.
+    ///
+    /// `zoom` is how much the caller has already scaled `ctx` up by, so the outline can stay thin.
     public static func draw(_ board: PCBBoard, in ctx: CGContext, rect: CGRect, focus: String? = nil,
-                            fromBack: Bool = false) {
+                            fromBack: Bool = false, zoom: CGFloat = 1) {
         ctx.saveGState()
         defer { ctx.restoreGState() }
         ctx.setFillColor(background)
@@ -87,7 +89,7 @@ public enum PCBRenderer {
 
         // outline at a constant ~1.2 pt, whatever the zoom
         ctx.setStrokeColor(hexColor("#000000"))
-        ctx.setLineWidth(1.2 / s)
+        ctx.setLineWidth(1.2 / (s * zoom))
         for sh in board.shapes["Edge.Cuts"] ?? [] {
             ctx.addPath(sh.path)
             ctx.strokePath()

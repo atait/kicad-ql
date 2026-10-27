@@ -3,22 +3,44 @@ import CoreText
 import Foundation
 
 /// gr_text / fp_text / property as filled glyph outlines in board mm.
-/// KiCad's own stroke font isn't available, so the system font stands in, scaled so its cap height is
-/// the text's (size h w) height and its width follows w/h. TrueType faces and knockout are ignored.
 ///
 /// `t` places the footprint (identity for board text); `keepUpright` turns footprint text that would
 /// read upside down by 180°, as KiCad does unless the text is unlocked.
 func textShapes(_ e: SExpr, _ text: String, _ t: CGAffineTransform, keepUpright: Bool) -> [Shape] {
-    guard !text.isEmpty, let at = e.first("at"), let x = at.number(1), let y = at.number(2) else { return [] }
-    let effects = e.first("effects")
-    let font = effects?.first("font")
-    let h = CGFloat(font?.first("size")?.number(1) ?? 1)            // (size height width)
-    let w = CGFloat(font?.first("size")?.number(2) ?? Double(h))
-    let justify = Set((effects?.first("justify")?.items.dropFirst() ?? []).compactMap(\.atom))
-
-    var angle = CGFloat(at.number(3) ?? 0)                            // absolute, even inside a footprint
+    guard let at = e.first("at"), let x = at.number(1), let y = at.number(2) else { return [] }
     let unlocked = at.items.contains { $0.atom == "unlocked" } || e.first("unlocked")?.string(1) == "yes"
-    if keepUpright && !unlocked {
+    let f = TextFormat(e)
+    return textShapes(text, at: CGPoint(x: x, y: y).applying(t), angle: CGFloat(at.number(3) ?? 0),  // absolute, even in a footprint
+                      size: f.size, justify: f.justify, keepUpright: keepUpright && !unlocked)
+}
+
+/// Size and justification from an item's (effects (font (size h w)) (justify …)).
+struct TextFormat {
+    var size: CGSize                       // width, height in mm
+    var justify: Set<String>
+
+    init(_ e: SExpr?) {
+        let effects = e?.name == "effects" ? e : e?.first("effects")
+        let size = effects?.first("font")?.first("size")
+        let h = CGFloat(size?.number(1) ?? 1.27)                         // (size height width)
+        self.size = CGSize(width: CGFloat(size?.number(2) ?? Double(h)), height: h)
+        justify = Set((effects?.first("justify")?.items.dropFirst() ?? []).compactMap(\.atom))
+    }
+}
+
+/// Text as filled glyph outlines, anchored at `at` (mm, y down) and turned by `angle` (degrees,
+/// counter-clockwise on screen). `justify` takes KiCad's words: left/right (centred if neither),
+/// top/bottom (centred if neither) and mirror. `keepUpright` turns text that would read upside down by
+/// 180° about the anchor, keeping the justification.
+///
+/// KiCad's stroke font isn't available, so the system font stands in, scaled so its cap height is the
+/// text height and its width follows width/height.
+func textShapes(_ text: String, at: CGPoint, angle: CGFloat, size: CGSize, justify: Set<String>,
+                keepUpright: Bool = false) -> [Shape] {
+    guard !text.isEmpty else { return [] }
+    let h = size.height, w = size.width
+    var angle = angle
+    if keepUpright {
         while angle > 90 { angle -= 180 }
         while angle <= -90 { angle += 180 }
     }
@@ -36,8 +58,7 @@ func textShapes(_ e: SExpr, _ text: String, _ t: CGAffineTransform, keepUpright:
     for line in lines {
         defer { baseline += pitch }
         guard !line.isEmpty else { continue }
-        let ct = CTLineCreateWithAttributedString(
-            CFAttributedStringCreate(nil, line as CFString, [kCTFontAttributeName: TextFont.font] as CFDictionary))
+        let ct = TextFont.line(line)
         let width = CGFloat(CTLineGetTypographicBounds(ct, nil, nil, nil)) * sx
         let x0 = justify.contains("left") ? 0 : justify.contains("right") ? -width : -width / 2
         for run in CTLineGetGlyphRuns(ct) as! [CTRun] {
@@ -58,9 +79,17 @@ func textShapes(_ e: SExpr, _ text: String, _ t: CGAffineTransform, keepUpright:
     }
     guard !glyphs.isEmpty else { return [] }
 
-    var place = placement(CGPoint(x: x, y: y).applying(t), angle)
+    var place = placement(at, angle)
     if justify.contains("mirror") { place = CGAffineTransform(scaleX: -1, y: 1).concatenating(place) }
     return glyphs.copy(using: &place).map { [Shape(path: $0, style: .fill)] } ?? []
+}
+
+/// The width and height of `text` as `textShapes` lays it out, unrotated.
+func textExtent(_ text: String, size: CGSize) -> CGSize {
+    let lines = text.split(separator: "\n", omittingEmptySubsequences: false)
+    let sx = size.height / TextFont.capHeight * size.width / size.height
+    let width = lines.map { CGFloat(CTLineGetTypographicBounds(TextFont.line(String($0)), nil, nil, nil)) * sx }.max() ?? 0
+    return CGSize(width: width, height: size.height + size.height * 1.62 * CGFloat(lines.count - 1))
 }
 
 /// Whether KiCad hides this text: a bare `hide`, or `(hide yes)`, on the item or in its effects.
@@ -75,4 +104,9 @@ func isHidden(_ e: SExpr) -> Bool {
 private enum TextFont {
     nonisolated(unsafe) static let font = CTFontCreateUIFontForLanguage(.system, 100, nil)!
     static let capHeight = CTFontGetCapHeight(font)
+
+    static func line(_ s: String) -> CTLine {
+        CTLineCreateWithAttributedString(
+            CFAttributedStringCreate(nil, s as CFString, [kCTFontAttributeName: font] as CFDictionary))
+    }
 }
