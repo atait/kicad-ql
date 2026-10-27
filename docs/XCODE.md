@@ -15,11 +15,13 @@ KiCadQL.app                          ← host app (KiCadQL/), just shows an "ins
 └── Contents/PlugIns/
     └── KiCadQLPreview.appex         ← spacebar preview   (KiCadQLPreview/PreviewViewController.swift)
               links ↓
-        KiCadPCBKit (Swift package) ← parser + renderer, testable without Xcode
+        KiCadPCBKit (Swift package) ← parsers + renderers (boards and schematics), testable without Xcode
 ```
 
-The host app's `Info.plist` also declares the file type `org.kicad.pcb` for the `.kicad_pcb`
-extension. macOS doesn't know this type otherwise, and the extension refers to it by that identifier.
+The host app's `Info.plist` also declares the file types `org.kicad.pcb` (for `.kicad_pcb`) and
+`org.kicad.sch` (for `.kicad_sch`). macOS doesn't know these types otherwise, and the extension refers
+to them by those identifiers. After installing a build that adds a type, open the app once so that macOS
+reads the new declaration.
 
 ## One-time setup
 
@@ -64,11 +66,14 @@ is unavailable for your team, change the prefix to something unique.
    window. Launching it registers the extension with macOS.
 2. **Turn the extension on**, if needed: open System Settings ▸ General ▸ Login Items & Extensions,
    scroll to **Quick Look**, and make sure *KiCad PCB Preview* is enabled.
-3. **Try it:** select a board in `examples/` in Finder and press Space. From Terminal:
+3. **Try it:** select a board or schematic in `examples/` in Finder and press Space. Pinch to zoom,
+   scroll with two fingers to pan, and double-click (or double-tap with two fingers) to fit again. From
+   Terminal:
 
    ```sh
-   qlmanage -r                                   # make QuickLook rescan extensions
-   qlmanage -p examples/LoomRide-v1.kicad_pcb    # open a preview window
+   qlmanage -r                                    # make QuickLook rescan extensions
+   qlmanage -p examples/LoomRide-v1.kicad_pcb     # open a preview window
+   qlmanage -p examples/SkySense-bank.kicad_sch
    ```
 
 ### Install it permanently
@@ -100,6 +105,7 @@ Most work happens in the renderer, which you can iterate on without QuickLook at
 
 ```sh
 swift run -c release --package-path KiCadPCBKit kiql-render examples/LoomRide-v1.kicad_pcb out.png 1200
+swift run -c release --package-path KiCadPCBKit kiql-render examples/SkySense-bank.kicad_sch out.png 2000
 open out.png
 swift test --package-path KiCadPCBKit
 ```
@@ -126,10 +132,11 @@ When you want to see the change in Finder:
 | Symptom | Things to check |
 | --- | --- |
 | Space shows a generic file icon | Did the app launch at least once? Is the extension enabled in System Settings? Is it listed by `pluginkit -mv -p com.apple.quicklook.preview \| grep -i kicad`? |
-| Still generic after that | `mdls -name kMDItemContentType board.kicad_pcb` should print `org.kicad.pcb`. If it prints `dyn.…`, the type declaration hasn't been picked up. Relaunch the app, then run `touch board.kicad_pcb`. |
+| Still generic after that | `mdls -name kMDItemContentType board.kicad_pcb` should print `org.kicad.pcb` (`org.kicad.sch` for a schematic). If it prints `dyn.…`, the type declaration hasn't been picked up. Relaunch the app, then run `touch board.kicad_pcb`. |
 | Works only while Xcode is open | You are running the DerivedData build. Install a copy in `/Applications` (see *Install it permanently*) |
 | Preview is stale after a rebuild | `qlmanage -r && qlmanage -r cache`, and `killall -9 KiCadQLPreview` |
 | "Signing for … requires a development team" | Set the Team on **both** targets (see above) |
+| Double-clicking a sub-sheet only shows a message | Expected: the sandbox lets QuickLook read only the file being previewed. Preview the sub-sheet's own file, or use `kiql-render --sheet NAME` |
 | Build errors mentioning `KiCadPCBKit` | File ▸ Packages ▸ **Reset Package Caches**, then build again |
 
 ## Swift in ten lines (enough to read this code)

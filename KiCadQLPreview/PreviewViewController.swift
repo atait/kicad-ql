@@ -2,14 +2,22 @@ import Cocoa
 import Quartz
 import KiCadPCBKit
 
-/// View-based preview: the board, with a legend of layer buttons in the top-left corner. Clicking a
-/// layer brings it to the front (PCBRenderer's focus mode); clicking it again goes back to the overview.
-/// A "View from back" toggle under the layers mirrors the board and puts the back layers nearest.
+/// View-based preview of a board or a schematic. Both can be zoomed with a pinch and panned with two
+/// fingers.
+///
+/// A board has a legend of layer buttons in the top-left corner. Clicking a layer brings it to the front
+/// (PCBRenderer's focus mode); clicking it again goes back to the overview. A "View from back" toggle
+/// under the layers mirrors the board and puts the back layers nearest.
+///
+/// A schematic shows its root sheet. Double-clicking a sub-sheet opens it when the file can be read,
+/// with a back button in the top-left corner.
 /// Info.plist needs QLIsDataBasedPreview = NO and
 /// NSExtensionPrincipalClass = $(PRODUCT_MODULE_NAME).PreviewViewController.
 class PreviewViewController: NSViewController, QLPreviewingController {
     private let boardView = BoardView()
     private let legend = LegendView()
+    private let schematicView = SchematicView()
+    private let sheetBar = SheetBar()
 
     /// Below this size (e.g. Finder's column-view preview pane) the legend would cover the board.
     private static let minLegendSize = CGSize(width: 300, height: 220)
@@ -18,21 +26,30 @@ class PreviewViewController: NSViewController, QLPreviewingController {
 
     override func loadView() {
         let root = NSView()
-        for v in [boardView, legend] as [NSView] {
+        for v in [boardView, schematicView, legend, sheetBar] as [NSView] {
             v.translatesAutoresizingMaskIntoConstraints = false
             root.addSubview(v)
         }
-        NSLayoutConstraint.activate([
-            boardView.leadingAnchor.constraint(equalTo: root.leadingAnchor),
-            boardView.trailingAnchor.constraint(equalTo: root.trailingAnchor),
-            boardView.topAnchor.constraint(equalTo: root.topAnchor),
-            boardView.bottomAnchor.constraint(equalTo: root.bottomAnchor),
-            legend.leadingAnchor.constraint(equalTo: root.leadingAnchor, constant: 10),
-            legend.topAnchor.constraint(equalTo: root.topAnchor, constant: 10),
-        ])
+        for v in [boardView, schematicView] {
+            NSLayoutConstraint.activate([
+                v.leadingAnchor.constraint(equalTo: root.leadingAnchor),
+                v.trailingAnchor.constraint(equalTo: root.trailingAnchor),
+                v.topAnchor.constraint(equalTo: root.topAnchor),
+                v.bottomAnchor.constraint(equalTo: root.bottomAnchor),
+            ])
+        }
+        for v in [legend, sheetBar] {
+            NSLayoutConstraint.activate([
+                v.leadingAnchor.constraint(equalTo: root.leadingAnchor, constant: 10),
+                v.topAnchor.constraint(equalTo: root.topAnchor, constant: 10),
+            ])
+        }
         legend.isHidden = true
+        schematicView.isHidden = true
         legend.onSelect = { [weak self] layer in self?.boardView.setFocus(layer) }
         legend.onFlip = { [weak self] fromBack in self?.boardView.setFromBack(fromBack) }
+        schematicView.onNavigate = { [weak self] path, failure in self?.sheetBar.update(sheetPath: path, failure: failure) }
+        sheetBar.onBack = { [weak self] in self?.schematicView.goUp() }
         view = root
     }
 
@@ -45,6 +62,15 @@ class PreviewViewController: NSViewController, QLPreviewingController {
     }
 
     func preparePreviewOfFile(at url: URL) async throws {
+        if url.pathExtension.lowercased() == "kicad_sch" {
+            let sch = try await Task.detached { try Schematic(url: url) }.value   // parse off the main thread
+            schematicView.show(sch, url: url)
+            schematicView.isHidden = false
+            boardView.isHidden = true
+            preferredContentSize = sch.fittedSize(in: CGSize(width: 1200, height: 900))
+            view.needsLayout = true
+            return
+        }
         let board = try await Task.detached { try PCBBoard(url: url) }.value   // parse off the main thread
         boardView.board = board
         legend.layers = PCBRenderer.layers(of: board)
@@ -53,8 +79,9 @@ class PreviewViewController: NSViewController, QLPreviewingController {
     }
 }
 
-/// Draws the board, and cross-fades to the new picture when the focus or the side changes.
-final class BoardView: NSView {
+/// Draws the board, zoomable and pannable, and cross-fades to the new picture when the focus or the
+/// side changes.
+final class BoardView: ZoomPanView {
     var board: PCBBoard? { didSet { needsDisplay = true } }
     /// A rect the board should stay clear of (the legend), in this view's coordinates.
     var avoid: CGRect = .zero { didSet { if avoid != oldValue { needsDisplay = true } } }
@@ -77,6 +104,7 @@ final class BoardView: NSView {
     func setFromBack(_ back: Bool) {
         guard back != fromBack else { return }
         fromBack = back
+        resetZoom()                                // the zoomed-in spot would jump to the other side
         crossFade()
     }
 
@@ -92,7 +120,9 @@ final class BoardView: NSView {
         guard let board, let ctx = NSGraphicsContext.current?.cgContext else { return }
         ctx.setFillColor(PCBRenderer.background)       // also behind the legend, beside the fitted board
         ctx.fill(bounds)
-        PCBRenderer.draw(board, in: ctx, rect: boardRect(board), focus: focus, fromBack: fromBack)
+        ctx.concatenate(zoomTransform)
+        PCBRenderer.draw(board, in: ctx, rect: boardRect(board), focus: focus, fromBack: fromBack,
+                         zoom: zoom)
     }
 
     /// Where to fit the board: the whole view if the board then misses `avoid`; otherwise the part beside

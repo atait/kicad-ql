@@ -9,7 +9,7 @@ struct KiCadQLApp: App {
         Window("KiCad QuickLook", id: "main") {
             VStack(alignment: .leading, spacing: 12) {
                 Text("KiCad QuickLook is installed").font(.title2.bold())
-                Text("Select a .kicad_pcb file in Finder and press Space to preview it. You can quit this app.")
+                Text("Select a .kicad_pcb or .kicad_sch file in Finder and press Space to preview it. You can quit this app.")
                 Text("If previews don't appear, enable the extension in System Settings → General → Login Items & Extensions → Quick Look.")
                     .foregroundStyle(.secondary)
             }

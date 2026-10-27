@@ -12,6 +12,7 @@
 			<key>QLSupportedContentTypes</key>
 			<array>
 				<string>org.kicad.pcb</string>
+				<string>org.kicad.sch</string>
 			</array>
 			<key>QLSupportsSearchableItems</key>
 			<false/>

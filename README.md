@@ -1,31 +1,43 @@
 # KiCad QuickLook
 
-A macOS QuickLook extension for KiCad boards (`.kicad_pcb`). Press space on a board in Finder and you
-get a fit-to-window overview. A legend in the corner lists the copper and silkscreen layers. Click a
-layer to bring it to the front, with the rest faded, and click it again to go back to the overview.
-**View from back** shows the board as seen from the bottom: mirrored, with the back layers on top, and
-with the same colours (B.Cu stays blue).
-KiCad does not need to be installed or running, because the board file is parsed and drawn directly.
+A macOS QuickLook extension for KiCad boards (`.kicad_pcb`) and schematics (`.kicad_sch`). Press
+Space on a file in Finder and you get a fit-to-window overview. **Pinch to zoom** and **scroll with two
+fingers to pan**. A mouse wheel also zooms. Double-click, or double-tap with two fingers, to fit the
+picture to the window again. KiCad does not need to be installed or running, because the files are
+parsed and drawn directly.
 
-The render is an overview, not a replacement for KiCad. It draws copper (tracks, pads, zone fills),
-vias, holes, front and back silkscreen (including visible text) and the board outline. Text uses the
-system font rather than KiCad's stroke font.
+**Boards:** a legend in the corner lists the copper and silkscreen layers. Click a layer to bring it to
+the front, with the rest faded, and click it again to go back to the overview. **View from back** shows
+the board as seen from the bottom: mirrored, with the back layers on top, and with the same colours
+(B.Cu stays blue). The preview draws copper (tracks, pads, zone fills), vias, holes, front and back
+silkscreen (including visible text) and the board outline.
+
+**Schematics:** the sheet is drawn in KiCad's default colours, with its page frame and title block. That
+includes symbols with their pins and fields, wires, buses, junctions, labels, notes, and hierarchical
+sheet boxes with their pins. Zoom in to read small text: it is redrawn sharp at every zoom level. Only the
+previewed file is shown. QuickLook may not read other files, so a sub-sheet can't be opened from its
+box. Preview the sub-sheet's own file instead.
+
+Both are overviews, not replacements for KiCad. Text uses the system font rather than KiCad's stroke
+font.
 
 ## Layout
 
 | Path | What it is |
 | --- | --- |
-| `KiCadPCBKit/` | Swift package: S-expression parser, board model, CoreGraphics renderer, `kiql-render` CLI, tests |
+| `KiCadPCBKit/` | Swift package: S-expression parser, board and schematic models, CoreGraphics renderers, `kiql-render` CLI, tests |
 | `KiCadQL.xcodeproj` | Xcode project: host app plus the Preview extension |
-| `KiCadQL/` | Host app. It exists to carry the extension and declare the `.kicad_pcb` file type |
+| `KiCadQL/` | Host app. It exists to carry the extension and declare the `.kicad_pcb` and `.kicad_sch` file types |
 | `KiCadQLPreview/` | QuickLook preview extension (spacebar) |
-| `examples/` | Sample boards for testing |
+| `examples/` | Sample boards and schematics for testing |
 | `docs/XCODE.md` | Step-by-step guide for building and installing with Xcode |
 
 ## Try the renderer without Xcode
 
 ```sh
 swift run -c release --package-path KiCadPCBKit kiql-render examples/LoomRide-v1.kicad_pcb out.png 1200
+swift run -c release --package-path KiCadPCBKit kiql-render examples/SkySense-bank.kicad_sch out.png 2000
+swift run -c release --package-path KiCadPCBKit kiql-render examples/SkySense-bank.kicad_sch out.png 2000 --sheet ssen3
 swift test --package-path KiCadPCBKit
 ```
 
