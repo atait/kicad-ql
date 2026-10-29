@@ -13,6 +13,7 @@
 			<array>
 				<string>org.kicad.pcb</string>
 				<string>org.kicad.sch</string>
+				<string>org.kicad.mod</string>
 			</array>
 			<key>QLSupportsSearchableItems</key>
 			<false/>

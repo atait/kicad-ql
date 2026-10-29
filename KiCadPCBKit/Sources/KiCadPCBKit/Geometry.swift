@@ -77,8 +77,9 @@ func graphicShapes(_ e: SExpr, _ t: CGAffineTransform, defaultFilled: Bool = fal
     let kind = raw.hasPrefix("gr_") || raw.hasPrefix("fp_") ? String(raw.dropFirst(3)) : raw
     // KiCad 6+: (stroke (width w) …); pad primitives and older files: (width w)
     let width = CGFloat(e.first("stroke")?.first("width")?.number(1) ?? e.first("width")?.number(1) ?? 0)
-    // KiCad 9+: (fill yes|no); KiCad 7–8: (fill solid|none)
-    let filled = e.first("fill")?.string(1).map { $0 == "yes" || $0 == "solid" } ?? defaultFilled
+    // KiCad 9+: (fill yes|no); KiCad 7–8: (fill solid|none); KiCad 5 has no fill token, and its polygons
+    // are always filled
+    let filled = e.first("fill")?.string(1).map { $0 == "yes" || $0 == "solid" } ?? (defaultFilled || kind == "poly")
 
     func out(_ path: CGPath, closed: Bool) -> [Shape] {
         var s: [Shape] = []

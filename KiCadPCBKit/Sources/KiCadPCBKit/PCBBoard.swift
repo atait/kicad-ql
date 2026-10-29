@@ -12,16 +12,24 @@ public enum PCBError: Error { case notABoard }
 
 /// What an overview needs from a .kicad_pcb: copper (tracks, pads, copper graphics, zone fills as last
 /// filled), vias and holes, front and back silkscreen (graphics and visible text), and the board outline.
+///
+/// A library footprint (.kicad_mod) is read as a board holding just that footprint. It also keeps the
+/// fab and mask layers, and the number of each pad.
 public final class PCBBoard: @unchecked Sendable {        // never mutated after init
+    public let isFootprint: Bool
     public private(set) var copperLayers: [String] = []
     private(set) var shapes: [String: [Shape]] = [:]
     private(set) var zoneFills: [String: [Shape]] = [:]
     private(set) var vias: [(center: CGPoint, size: CGFloat, drill: CGFloat)] = []
     private(set) var holes: [CGPath] = []
+    /// Footprints only: each pad's number, as glyphs centred on the pad.
+    private(set) var padNumbers: [Shape] = []
     public private(set) var bounds: CGRect = .zero
 
     /// Non-copper layers that are kept.
     static let otherLayers: Set<String> = ["F.SilkS", "B.SilkS", "Edge.Cuts"]
+    /// Kept as well in a footprint.
+    static let footprintLayers: Set<String> = ["F.Fab", "B.Fab", "F.Mask", "B.Mask"]
 
     public convenience init(url: URL) throws {
         try self.init(data: Data(contentsOf: url, options: .mappedIfSafe))
@@ -29,7 +37,15 @@ public final class PCBBoard: @unchecked Sendable {        // never mutated after
 
     public init(data: Data) throws {
         let root = try SExprParser.parse(data)
-        guard root.name == "kicad_pcb" else { throw PCBError.notABoard }
+        isFootprint = root.name == "footprint" || root.name == "module"      // module: KiCad 5
+        guard root.name == "kicad_pcb" || isFootprint else { throw PCBError.notABoard }
+        if isFootprint {
+            copperLayers = ["F.Cu", "B.Cu"]                // what *.Cu means here; trimmed to those used
+            footprint(root)
+            copperLayers = copperLayers.filter { shapes[$0] != nil }
+            bounds = computeBounds()
+            return
+        }
         // header: (layers (0 "F.Cu" signal) (2 "B.Cu" signal) …)
         let declared = (root.first("layers")?.items.dropFirst() ?? [])
             .compactMap { $0.string(1) }
@@ -65,7 +81,9 @@ public final class PCBBoard: @unchecked Sendable {        // never mutated after
 
     // MARK: - items
 
-    private func keeps(_ layer: String) -> Bool { layer.hasSuffix(".Cu") || Self.otherLayers.contains(layer) }
+    private func keeps(_ layer: String) -> Bool {
+        layer.hasSuffix(".Cu") || Self.otherLayers.contains(layer) || (isFootprint && Self.footprintLayers.contains(layer))
+    }
 
     private func add(_ s: [Shape], on layer: String) {
         guard !s.isEmpty, keeps(layer) else { return }
@@ -151,6 +169,13 @@ public final class PCBBoard: @unchecked Sendable {        // never mutated after
             let rratio = CGFloat(e.first("roundrect_rratio")?.number(1) ?? 0.25)
             copper.insert(Shape(path: padOutline(shape, w, h, rratio: rratio, pt), style: .fill), at: 0)
             for layer in padLayers(e) { add(copper, on: layer) }
+            if isFootprint {
+                // the mask opening, without the board's margin, which a footprint file doesn't know
+                let m = CGFloat(e.first("solder_mask_margin")?.number(1) ?? 0)
+                let opening = Shape(path: padOutline(shape, w + 2 * m, h + 2 * m, rratio: rratio, pt), style: .fill)
+                for layer in maskLayers(e) { add([opening], on: layer) }
+                padNumbers += padNumber(e.string(1) ?? "", w, h, at: center, angle: CGFloat(at.number(3) ?? 0))
+            }
         }
         // (drill 1.0) | (drill oval 1.0 2.0) | (drill 1.0 (offset …)); the offset is ignored
         if let d = e.first("drill") {
@@ -171,10 +196,27 @@ public final class PCBBoard: @unchecked Sendable {        // never mutated after
         return out
     }
 
+    private func maskLayers(_ e: SExpr) -> [String] {
+        (e.first("layers")?.items.dropFirst() ?? []).compactMap(\.atom).flatMap {
+            $0 == "*.Mask" || $0 == "F&B.Mask" ? ["F.Mask", "B.Mask"] : $0.hasSuffix(".Mask") ? [$0] : []
+        }
+    }
+
+    /// The number centred on a w × h pad, along the pad's long side, as large as fits.
+    private func padNumber(_ number: String, _ w: CGFloat, _ h: CGFloat, at center: CGPoint, angle: CGFloat) -> [Shape] {
+        guard !number.isEmpty else { return [] }
+        let long = max(w, h), short = min(w, h)
+        var size = CGSize(width: short * 0.45, height: short * 0.45)
+        let width = textExtent(number, size: size).width
+        if width > long * 0.8 { size = CGSize(width: size.width * long * 0.8 / width, height: size.height * long * 0.8 / width) }
+        return textShapes(number, at: center, angle: angle + (h > w ? 90 : 0),
+                          size: size, justify: [], keepUpright: true)
+    }
+
     private func computeBounds() -> CGRect {
         var b = CGRect.null
-        for s in shapes["Edge.Cuts"] ?? [] { b = b.union(s.path.boundingBoxOfPath) }
-        if b.isNull {                                     // no outline: fit everything
+        if !isFootprint { for s in shapes["Edge.Cuts"] ?? [] { b = b.union(s.path.boundingBoxOfPath) } }
+        if b.isNull {                                     // no outline, or a footprint: fit everything
             for list in shapes.values { for s in list { b = b.union(s.path.boundingBoxOfPath) } }
             for list in zoneFills.values { for s in list { b = b.union(s.path.boundingBoxOfPath) } }
         }

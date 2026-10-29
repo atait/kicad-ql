@@ -15,11 +15,11 @@ KiCadQL.app                          ← host app (KiCadQL/), just shows an "ins
 └── Contents/PlugIns/
     └── KiCadQLPreview.appex         ← spacebar preview   (KiCadQLPreview/PreviewViewController.swift)
               links ↓
-        KiCadPCBKit (Swift package) ← parsers + renderers (boards and schematics), testable without Xcode
+        KiCadPCBKit (Swift package) ← parsers + renderers (boards, footprints, schematics), testable without Xcode
 ```
 
 The host app's `Info.plist` also declares the file types `org.kicad.pcb` (for `.kicad_pcb`) and
-`org.kicad.sch` (for `.kicad_sch`). macOS doesn't know these types otherwise, and the extension refers
+`org.kicad.sch` (for `.kicad_sch`) and `org.kicad.mod` (for `.kicad_mod` footprints). macOS doesn't know these types otherwise, and the extension refers
 to them by those identifiers. After installing a build that adds a type, open the app once so that macOS
 reads the new declaration.
 
@@ -66,14 +66,15 @@ is unavailable for your team, change the prefix to something unique.
    window. Launching it registers the extension with macOS.
 2. **Turn the extension on**, if needed: open System Settings ▸ General ▸ Login Items & Extensions,
    scroll to **Quick Look**, and make sure *KiCad PCB Preview* is enabled.
-3. **Try it:** select a board or schematic in `examples/` in Finder and press Space. Pinch to zoom,
-   scroll with two fingers (or click and drag) to pan, and double-click (or double-tap with two fingers) to fit again. From
-   Terminal:
+3. **Try it:** select a board, footprint or schematic in `examples/` in Finder and press Space. Pinch
+   to zoom, scroll with two fingers (or click and drag) to pan, and double-tap with two fingers to fit
+   again (a double-click opens the file in KiCad). From Terminal:
 
    ```sh
    qlmanage -r                                    # make QuickLook rescan extensions
    qlmanage -p examples/LoomRide-v1.kicad_pcb     # open a preview window
    qlmanage -p examples/SkySense-bank.kicad_sch
+   qlmanage -p examples/Crystal_HC49-U-3Pin_Vertical.kicad_mod
    ```
 
 ### Install it permanently
@@ -106,6 +107,7 @@ Most work happens in the renderer, which you can iterate on without QuickLook at
 ```sh
 swift run -c release --package-path KiCadPCBKit kiql-render examples/LoomRide-v1.kicad_pcb out.png 1200
 swift run -c release --package-path KiCadPCBKit kiql-render examples/SkySense-bank.kicad_sch out.png 2000
+swift run -c release --package-path KiCadPCBKit kiql-render examples/Crystal_HC49-U-3Pin_Vertical.kicad_mod out.png 1200
 open out.png
 swift test --package-path KiCadPCBKit
 ```
@@ -132,8 +134,9 @@ When you want to see the change in Finder:
 | Symptom | Things to check |
 | --- | --- |
 | Space shows a generic file icon | Did the app launch at least once? Is the extension enabled in System Settings? Is it listed by `pluginkit -mv -p com.apple.quicklook.preview \| grep -i kicad`? |
-| Still generic after that | `mdls -name kMDItemContentType board.kicad_pcb` should print `org.kicad.pcb` (`org.kicad.sch` for a schematic). If it prints `dyn.…`, the type declaration hasn't been picked up. Relaunch the app, then run `touch board.kicad_pcb`. |
+| Still generic after that | `mdls -name kMDItemContentType board.kicad_pcb` should print `org.kicad.pcb` (`org.kicad.sch` for a schematic, `org.kicad.mod` for a footprint). If it prints `dyn.…`, the type declaration hasn't been picked up. Relaunch the app, then run `touch board.kicad_pcb`. |
 | Works only while Xcode is open | You are running the DerivedData build. Install a copy in `/Applications` (see *Install it permanently*) |
+| "Extension … not found", or an old version keeps showing | macOS has several copies registered and picked one that's gone or old (e.g. an export folder you deleted, or a copy in the Trash). `pluginkit -mv -p com.apple.quicklook.preview \| grep -i kicad` shows the path in use. Keep one copy, at `/Applications/KiCadQL.app` (replace it rather than adding dated export folders), and empty the Trash. Then run `pluginkit -a /Applications/KiCadQL.app/Contents/PlugIns/KiCadQLPreview.appex` and `qlmanage -r`. To remove a stale entry for a path that no longer exists: `/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -u "<path to KiCadQL.app>"`. |
 | Preview is stale after a rebuild | `qlmanage -r && qlmanage -r cache`, and `killall -9 KiCadQLPreview` |
 | "Signing for … requires a development team" | Set the Team on **both** targets (see above) |
 | Double-clicking a sub-sheet only shows a message | Expected: the sandbox lets QuickLook read only the file being previewed. Preview the sub-sheet's own file, or use `kiql-render --sheet NAME` |

@@ -1,6 +1,7 @@
 # KiCad QuickLook
 
-Press Space on a KiCad board (`.kicad_pcb`) or schematic (`.kicad_sch`) in Finder to see a preview.
+Press Space on a KiCad board (`.kicad_pcb`), footprint (`.kicad_mod`) or schematic (`.kicad_sch`) in
+Finder to see a preview.
 KiCad doesn't need to be installed.
 
 ![A four-layer board in the QuickLook preview](images/QL-LSHM-2-Dsub.png)
@@ -16,6 +17,9 @@ KiCad doesn't need to be installed.
 **View from back** shows the board from the bottom, mirrored.
 
 ![The back silkscreen brought to the front](images/QL-LSHM-2-Dsub-BSilkS.png)
+
+**Footprints:** shown like a board, without the back view. The legend also has the fab, solder mask
+and Edge.Cuts layers, each pad is labelled with its number, and silkscreen is drawn dark.
 
 **Schematics:** the sheet is drawn in KiCad's colours. Zoom in to read small text. For a hierarchical
 design, the top sheet shows each sub-sheet as a box. To see what's inside, preview the sub-sheet's own
@@ -39,5 +43,6 @@ See [docs/XCODE.md](docs/XCODE.md). To try the renderer without Xcode:
 ```sh
 swift run -c release --package-path KiCadPCBKit kiql-render examples/LoomRide-v1.kicad_pcb out.png 1200
 swift run -c release --package-path KiCadPCBKit kiql-render examples/SkySense-bank.kicad_sch out.png 2000
+swift run -c release --package-path KiCadPCBKit kiql-render examples/Crystal_HC49-U-3Pin_Vertical.kicad_mod out.png 1200
 swift test --package-path KiCadPCBKit
 ```

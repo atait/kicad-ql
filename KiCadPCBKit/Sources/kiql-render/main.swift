@@ -1,5 +1,6 @@
 // kiql-render: test the renderers outside QuickLook.
 //   swift run -c release --package-path KiCadPCBKit kiql-render board.kicad_pcb out.png [max_px] [--focus LAYER] [--back]
+//   (a footprint, .kicad_mod, works the same way)
 //   swift run -c release --package-path KiCadPCBKit kiql-render sheet.kicad_sch out.png [max_px] [--sheet NAME] [--zoom Z --at X,Y]
 // --focus draws what the QuickLook preview shows after clicking that layer in the legend;
 // --back draws the board as seen from the bottom ("View from back" in the legend).
@@ -25,7 +26,7 @@ let fromBack = args.contains("--back")
 args.removeAll { $0 == "--back" }
 guard args.count >= 3 else {
     print("""
-        usage: kiql-render board.kicad_pcb out.png [max_px] [--focus LAYER] [--back] [--zoom Z --at X,Y]
+        usage: kiql-render board.kicad_pcb|part.kicad_mod out.png [max_px] [--focus LAYER] [--back] [--zoom Z --at X,Y]
                kiql-render sheet.kicad_sch out.png [max_px] [--sheet NAME] [--zoom Z --at X,Y]
         """)
     exit(1)

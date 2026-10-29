@@ -2,12 +2,13 @@ import Cocoa
 import Quartz
 import KiCadPCBKit
 
-/// View-based preview of a board or a schematic. Both can be zoomed with a pinch and panned with two
-/// fingers.
+/// View-based preview of a board, a footprint or a schematic. All can be zoomed with a pinch and panned
+/// with two fingers.
 ///
 /// A board has a legend of layer buttons in the top-left corner. Clicking a layer brings it to the front
 /// (PCBRenderer's focus mode); clicking it again goes back to the overview. A "View from back" toggle
-/// under the layers mirrors the board and puts the back layers nearest.
+/// under the layers mirrors the board and puts the back layers nearest. A footprint (.kicad_mod) is shown
+/// the same way, without the back view.
 ///
 /// A schematic shows its root sheet. Double-clicking a sub-sheet opens it when the file can be read,
 /// with a back button in the top-left corner.
@@ -73,6 +74,7 @@ class PreviewViewController: NSViewController, QLPreviewingController {
         }
         let board = try await Task.detached { try PCBBoard(url: url) }.value   // parse off the main thread
         boardView.board = board
+        legend.footprint = board.isFootprint
         legend.layers = PCBRenderer.layers(of: board)
         preferredContentSize = board.fittedSize(in: CGSize(width: 1000, height: 800))
         view.needsLayout = true
@@ -146,6 +148,8 @@ final class BoardView: ZoomPanView {
 final class LegendView: NSVisualEffectView {
     var onSelect: ((String?) -> Void)?
     var onFlip: ((Bool) -> Void)?
+    /// A footprint has no "View from back", and its own silkscreen colours.
+    var footprint = false { didSet { rebuild() } }
     /// Front to back, as `PCBRenderer.layers(of:)` gives them.
     var layers: [String] = [] { didSet { rebuild() } }
     private let stack = NSStackView()
@@ -187,7 +191,7 @@ final class LegendView: NSVisualEffectView {
     private func rebuild() {
         stack.arrangedSubviews.forEach { $0.removeFromSuperview() }
         for layer in flipButton.state == .on ? layers.reversed() : layers {
-            let b = NSButton(title: Self.displayName(layer), image: Self.swatch(layer),
+            let b = NSButton(title: Self.displayName(layer), image: Self.swatch(layer, footprint: footprint),
                              target: self, action: #selector(clicked))
             b.setButtonType(.pushOnPushOff)
             b.bezelStyle = .recessed
@@ -198,6 +202,7 @@ final class LegendView: NSVisualEffectView {
             b.state = layer == selected ? .on : .off
             add(b)
         }
+        guard !footprint else { return }
         let line = NSBox()
         line.boxType = .separator
         add(line)
@@ -229,8 +234,8 @@ final class LegendView: NSVisualEffectView {
     }
 
     /// A small rounded square in the layer's colour, with a thin edge so the off-white silkscreen shows.
-    private static func swatch(_ layer: String) -> NSImage {
-        let color = NSColor(cgColor: PCBRenderer.color(of: layer)) ?? .gray
+    private static func swatch(_ layer: String, footprint: Bool) -> NSImage {
+        let color = NSColor(cgColor: PCBRenderer.color(of: layer, footprint: footprint)) ?? .gray
         return NSImage(size: NSSize(width: 12, height: 12), flipped: false) { rect in
             let path = NSBezierPath(roundedRect: rect.insetBy(dx: 0.5, dy: 0.5), xRadius: 2.5, yRadius: 2.5)
             color.setFill()
